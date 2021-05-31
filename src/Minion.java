@@ -15,9 +15,9 @@ public class Minion {
 
     private boolean alive;
 
-    private String name;
+    private final String name;
 
-    private int tier;
+    private final int tier;
 
     /**
      * Create an instance of Minion.
