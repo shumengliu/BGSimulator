@@ -104,20 +104,14 @@ public class Board {
      */
     public void printBattleResult() {
         StringBuilder buffer = new StringBuilder("Result: ");
-        if (minionsA.stream().anyMatch(Minion::isAlive)) {
-            int damage = minionsA.stream()
-                    .filter(Minion::isAlive)
-                    .mapToInt(Minion::getTier)
-                    .sum();
+        if (queueA.hasLivingMinion()) {
+            int damage = queueA.getTierSum();
             buffer.append("PlayerA wins! ");
             buffer.append("PlayerB loses ");
             buffer.append(damage);
             buffer.append(" HP.");
-        } else if (minionsB.stream().anyMatch(Minion::isAlive)) {
-            int damage = minionsB.stream()
-                    .filter(Minion::isAlive)
-                    .mapToInt(Minion::getTier)
-                    .sum();
+        } else if (queueB.hasLivingMinion()) {
+            int damage = queueB.getTierSum();
             buffer.append("PlayerB wins! ");
             buffer.append("PlayerA loses ");
             buffer.append(damage);
@@ -168,19 +162,19 @@ public class Board {
      * One attack in a battle. Both minions involved loses HP equivalent to the
      * other's attack.
      *
-     * @param attacker
-     * @param defender
+     * @param attacker the attacking minion
+     * @param defender the attacked minion
      */
     public void attack(Minion attacker, Minion defender) {
+        assert attacker.isAlive();
+        assert defender.isAlive();
         attacker.loseHP(defender.getAttack());
         defender.loseHP(attacker.getAttack());
-//		System.out.println(attacker.getName() + " attacked " + defender.getName() + ".");
+        System.out.println(attacker.getName() + " attacked " + defender.getName() + ".");
     }
 
     /**
      * Return a list of minions of player A.
-     *
-     * @return
      */
     public ArrayList<Minion> getMinionsA() {
         return minionsA;
@@ -188,8 +182,6 @@ public class Board {
 
     /**
      * Return a list of minions of player B.
-     *
-     * @return
      */
     public ArrayList<Minion> getMinionsB() {
         return minionsB;
@@ -214,7 +206,7 @@ public class Board {
      * Return if the battle will continue. The battle continues when both players
      * have at least one minion alive.
      *
-     * @return
+     * @return True if the battle is viable.
      */
     public boolean battleViable() {
         // Check if there are alive minions in both lists.

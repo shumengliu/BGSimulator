@@ -45,9 +45,23 @@ public class BattleQueue {
         return minions.get(random.nextInt(minions.size()));
     }
 
+    /**
+     * Removes the given minion from queue if it is dead.
+     *
+     * @param minion the minion to remove.
+     */
     public void removeIfDead(Minion minion) {
         if (!minion.isAlive()) {
             minions.remove(minion);
         }
+    }
+
+    /**
+     * Returns the sum of tiers of minions in the queue.
+     *
+     * @return the tier sum
+     */
+    public int getTierSum() {
+        return minions.stream().map(Minion::getTier).mapToInt(Integer::intValue).sum();
     }
 }
