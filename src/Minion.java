@@ -15,9 +15,9 @@ public class Minion {
 
     private boolean alive;
 
-    private String name;
+    private final String name;
 
-    private int tier;
+    private final int tier;
 
     /**
      * Create an instance of Minion.
@@ -88,7 +88,7 @@ public class Minion {
      * Reduces the minion's current HP.
      * If its HP is below 0 after reduction, set it to dead.
      *
-     * @param damage
+     * @param damage the damage taken.
      */
     public void loseHP(int damage) {
         currentHP = Math.max(currentHP - damage, 0);
