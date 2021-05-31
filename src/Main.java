@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         loadBoard1();
 
-        simulator.SimulateOnce();
+        simulator.simulateOnce();
 //        simulator.Simulate(1000);
     }
 
