@@ -1,20 +1,25 @@
-plugins {
-    id 'java'
-}
+apply plugin: 'java'
+apply plugin: 'application'
 
-group 'org.book'
-version '1.0-SNAPSHOT'
 
+// tag::repositories[]
 repositories {
     mavenCentral()
 }
-sourceSets {
-    main {
-        java {
-            srcDirs = ['src']
-        }
-    }
+// end::repositories[]
+
+// tag::jar[]
+jar {
+    archiveBaseName = 'gs-gradle'
+    archiveVersion = '0.1.0'
 }
+// end::jar[]
+
+// tag::dependencies[]
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 dependencies {
-    compile 'junit:junit:5.4'
+    implementation "joda-time:joda-time:2.2"
+    testImplementation "junit:junit:4.12"
 }
