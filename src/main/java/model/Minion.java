@@ -1,3 +1,5 @@
+package java.model;
+
 /**
  * This class represents a simple minion in Battlegrounds.
  * A minion has health and attack.
@@ -20,7 +22,7 @@ public class Minion {
     private final int tier;
 
     /**
-     * Create an instance of Minion.
+     * Create an instance of model.Minion.
      *
      * @param name
      * @param attack

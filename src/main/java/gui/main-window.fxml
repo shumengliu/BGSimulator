@@ -26,7 +26,7 @@
                         <Label alignment="CENTER" prefHeight="140.0" prefWidth="199.0" text="myMinion" BorderPane.alignment="CENTER" />
                      </center>
                      <top>
-                        <Button mnemonicParsing="false" text="Add/Modify Minion" BorderPane.alignment="CENTER" />
+                        <Button mnemonicParsing="false" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
                   </BorderPane>
                   <BorderPane layoutX="10.0" layoutY="10.0" prefHeight="196.0" prefWidth="143.0">
@@ -42,7 +42,7 @@
                         <Label alignment="CENTER" prefHeight="140.0" prefWidth="199.0" text="myMinion" BorderPane.alignment="CENTER" />
                      </center>
                      <top>
-                        <Button mnemonicParsing="false" text="Add/Modify Minion" BorderPane.alignment="CENTER" />
+                        <Button mnemonicParsing="false" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
                   </BorderPane>
                   <BorderPane layoutX="153.0" layoutY="10.0" prefHeight="196.0" prefWidth="143.0">
@@ -58,7 +58,7 @@
                         <Label alignment="CENTER" prefHeight="140.0" prefWidth="199.0" text="myMinion" BorderPane.alignment="CENTER" />
                      </center>
                      <top>
-                        <Button mnemonicParsing="false" text="Add/Modify Minion" BorderPane.alignment="CENTER" />
+                        <Button mnemonicParsing="false" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
                   </BorderPane>
                   <BorderPane layoutX="296.0" layoutY="10.0" prefHeight="196.0" prefWidth="143.0">
@@ -74,7 +74,7 @@
                         <Label alignment="CENTER" prefHeight="140.0" prefWidth="199.0" text="myMinion" BorderPane.alignment="CENTER" />
                      </center>
                      <top>
-                        <Button mnemonicParsing="false" text="Add/Modify Minion" BorderPane.alignment="CENTER" />
+                        <Button mnemonicParsing="false" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
                   </BorderPane>
                   <BorderPane layoutX="384.0" layoutY="10.0" prefHeight="196.0" prefWidth="143.0">
@@ -90,7 +90,7 @@
                         <Label alignment="CENTER" prefHeight="140.0" prefWidth="199.0" text="myMinion" BorderPane.alignment="CENTER" />
                      </center>
                      <top>
-                        <Button mnemonicParsing="false" text="Add/Modify Minion" BorderPane.alignment="CENTER" />
+                        <Button mnemonicParsing="false" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
                   </BorderPane>
                   <BorderPane layoutX="309.0" layoutY="10.0" prefHeight="196.0" prefWidth="143.0">
@@ -106,7 +106,7 @@
                         <Label alignment="CENTER" prefHeight="140.0" prefWidth="199.0" text="myMinion" BorderPane.alignment="CENTER" />
                      </center>
                      <top>
-                        <Button mnemonicParsing="false" text="Add/Modify Minion" BorderPane.alignment="CENTER" />
+                        <Button mnemonicParsing="false" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
                   </BorderPane>
                   <BorderPane layoutX="343.0" layoutY="10.0" prefHeight="196.0" prefWidth="143.0">
@@ -122,7 +122,7 @@
                         <Label alignment="CENTER" prefHeight="140.0" prefWidth="199.0" text="myMinion" BorderPane.alignment="CENTER" />
                      </center>
                      <top>
-                        <Button mnemonicParsing="false" text="Add/Modify Minion" BorderPane.alignment="CENTER" />
+                        <Button mnemonicParsing="false" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
                   </BorderPane>
                </children>
@@ -142,7 +142,7 @@
                         <Label alignment="CENTER" prefHeight="140.0" prefWidth="199.0" text="myMinion" BorderPane.alignment="CENTER" />
                      </center>
                      <top>
-                        <Button mnemonicParsing="false" text="Add/Modify Minion" BorderPane.alignment="CENTER" />
+                        <Button mnemonicParsing="false" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
                   </BorderPane>
                   <BorderPane layoutX="10.0" layoutY="10.0" prefHeight="196.0" prefWidth="143.0">
@@ -158,7 +158,7 @@
                         <Label alignment="CENTER" prefHeight="140.0" prefWidth="199.0" text="myMinion" BorderPane.alignment="CENTER" />
                      </center>
                      <top>
-                        <Button mnemonicParsing="false" text="Add/Modify Minion" BorderPane.alignment="CENTER" />
+                        <Button mnemonicParsing="false" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
                   </BorderPane>
                   <BorderPane layoutX="153.0" layoutY="10.0" prefHeight="196.0" prefWidth="143.0">
@@ -174,7 +174,7 @@
                         <Label alignment="CENTER" prefHeight="140.0" prefWidth="199.0" text="myMinion" BorderPane.alignment="CENTER" />
                      </center>
                      <top>
-                        <Button mnemonicParsing="false" text="Add/Modify Minion" BorderPane.alignment="CENTER" />
+                        <Button mnemonicParsing="false" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
                   </BorderPane>
                   <BorderPane layoutX="296.0" layoutY="10.0" prefHeight="196.0" prefWidth="143.0">
@@ -190,7 +190,7 @@
                         <Label alignment="CENTER" prefHeight="140.0" prefWidth="199.0" text="myMinion" BorderPane.alignment="CENTER" />
                      </center>
                      <top>
-                        <Button mnemonicParsing="false" text="Add/Modify Minion" BorderPane.alignment="CENTER" />
+                        <Button mnemonicParsing="false" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
                   </BorderPane>
                   <BorderPane layoutX="384.0" layoutY="10.0" prefHeight="196.0" prefWidth="143.0">
@@ -206,7 +206,7 @@
                         <Label alignment="CENTER" prefHeight="140.0" prefWidth="199.0" text="myMinion" BorderPane.alignment="CENTER" />
                      </center>
                      <top>
-                        <Button mnemonicParsing="false" text="Add/Modify Minion" BorderPane.alignment="CENTER" />
+                        <Button mnemonicParsing="false" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
                   </BorderPane>
                   <BorderPane layoutX="309.0" layoutY="10.0" prefHeight="196.0" prefWidth="143.0">
@@ -222,7 +222,7 @@
                         <Label alignment="CENTER" prefHeight="140.0" prefWidth="199.0" text="myMinion" BorderPane.alignment="CENTER" />
                      </center>
                      <top>
-                        <Button mnemonicParsing="false" text="Add/Modify Minion" BorderPane.alignment="CENTER" />
+                        <Button mnemonicParsing="false" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
                   </BorderPane>
                   <BorderPane layoutX="343.0" layoutY="10.0" prefHeight="196.0" prefWidth="143.0">
@@ -238,7 +238,7 @@
                         <Label alignment="CENTER" prefHeight="140.0" prefWidth="199.0" text="myMinion" BorderPane.alignment="CENTER" />
                      </center>
                      <top>
-                        <Button mnemonicParsing="false" text="Add/Modify Minion" BorderPane.alignment="CENTER" />
+                        <Button mnemonicParsing="false" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
                   </BorderPane>
                </children>

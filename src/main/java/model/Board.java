@@ -1,3 +1,5 @@
+package java.model;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -34,8 +36,8 @@ public class Board {
 //     */
 //    public int combat() {
 //        // Create attack queue.
-//        BattleQueue queueA = new BattleQueue(minionsA);
-//        BattleQueue queueB = new BattleQueue(minionsB);
+//        model.BattleQueue queueA = new model.BattleQueue(minionsA);
+//        model.BattleQueue queueB = new model.BattleQueue(minionsB);
 //
 //        battlePhase();
 //
@@ -189,7 +191,7 @@ public class Board {
 
     /**
      * Add a minion to one of the players. This usually works with calling the
-     * constructor of Minion in the parameter to create a new minion.
+     * constructor of model.Minion in the parameter to create a new minion.
      *
      * @param minion The minion to add.
      * @param side   The owner of this minion.
