@@ -1,4 +1,4 @@
-package java.model;
+package model;
 
 /**
  * This class represents a simple minion in Battlegrounds.

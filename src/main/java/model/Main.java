@@ -1,4 +1,4 @@
-package java.model;
+package model;
 
 public class Main {
     private static final Simulator simulator = new Simulator();
