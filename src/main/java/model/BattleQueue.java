@@ -6,7 +6,7 @@ import java.util.Random;
 public class BattleQueue {
     static private final Random random = new Random();
 
-    private ArrayList<Minion> minions;
+    private final ArrayList<Minion> minions;
 
     // index of the next minion to attack
     private int front;
@@ -17,6 +17,15 @@ public class BattleQueue {
         for (Minion minion : minionsOnBoard) {
             minions.add(new Minion(minion));
         }
+    }
+
+    public BattleQueue() {
+        front = 0;
+        minions = new ArrayList<>();
+    }
+
+    public void addMinion(Minion minion) {
+        minions.add(minion);
     }
 
     public boolean hasLivingMinion() {

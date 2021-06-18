@@ -2,14 +2,14 @@ package model;
 
 public class Simulator {
 
-    private Board board;
+    private final Board board;
 
     public Simulator() {
         board = new Board();
     }
 
-    public void addMinion(Minion minion, Side side) {
-        board.addMinion(minion, side);
+    public void addMinionToPosition(Minion minion, Position position) {
+        board.addMinionToPosition(minion, position);
     }
 
     /**
@@ -20,7 +20,7 @@ public class Simulator {
      * Minions are modified after this type of combat.
      */
     public void simulateOnce() {
-        board.printStartingPosition();
+        board.printBoard();
         board.battlePhase();
         board.printBattleResult();
     }
@@ -32,7 +32,7 @@ public class Simulator {
      * @param numberOfSims Number of combat simulations.
      */
     public void simulate(int numberOfSims) {
-        board.printStartingPosition();
+        board.printBoard();
         double winA = 0;
         double winB = 0;
         double draw = 0;
@@ -48,9 +48,9 @@ public class Simulator {
 //        }
         // Print win rates.
         System.out.println("Combat was simulated " + numberOfSims + " times.");
-        System.out.println("PlayerB win rate: " + (double) (winB / numberOfSims * 100) + "%");
-        System.out.println("Draw rate: " + (double) (draw / numberOfSims * 100) + "%");
-        System.out.println("PlayerA win rate: " + (double) (winA / numberOfSims * 100) + "%");
+        System.out.println("PlayerB win rate: " + (winB / numberOfSims * 100) + "%");
+        System.out.println("Draw rate: " + (draw / numberOfSims * 100) + "%");
+        System.out.println("PlayerA win rate: " + (winA / numberOfSims * 100) + "%");
     }
 
 
