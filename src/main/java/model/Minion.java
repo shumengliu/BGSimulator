@@ -3,8 +3,7 @@ package model;
 /**
  * This class represents a simple minion in Battlegrounds.
  * A minion has health and attack.
- * A minion can also have keywords such as Taunt and Poisoned.
- * (Not yet implemented)
+ * A minion can also have keywords such as Taunt and Poisoned. (Not yet implemented)
  *
  * @author HonestBook
  */
@@ -22,7 +21,7 @@ public class Minion {
     private final int tier;
 
     /**
-     * Create an instance of model.Minion.
+     * Create an instance of Minion.
      *
      * @param name
      * @param attack
@@ -38,8 +37,6 @@ public class Minion {
 
     /**
      * Constructor for cloning a minion.
-     *
-     * @param minion
      */
     public Minion(Minion minion) {
         this.name = minion.getName();
@@ -47,43 +44,6 @@ public class Minion {
         this.currentHP = minion.getHealth();
         this.tier = minion.getTier();
         alive = true;
-    }
-
-    /**
-     * Return the name of this minion.
-     *
-     * @return
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Return the attack of this minion.
-     *
-     * @return
-     */
-    public int getAttack() {
-        return atk;
-    }
-
-
-    /**
-     * Return the health of this minion.
-     *
-     * @return
-     */
-    public int getHealth() {
-        return currentHP;
-    }
-
-    /**
-     * Return the tier of this minion.
-     *
-     * @return
-     */
-    public int getTier() {
-        return tier;
     }
 
     /**
@@ -106,5 +66,29 @@ public class Minion {
      */
     public boolean isAlive() {
         return alive;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAttack() {
+        return atk;
+    }
+
+    public int getHealth() {
+        return currentHP;
+    }
+
+    public int getTier() {
+        return tier;
+    }
+
+    public void setAttack(int atk) {
+        this.atk = atk;
+    }
+
+    public void setHP(int HP) {
+        this.currentHP = HP;
     }
 }

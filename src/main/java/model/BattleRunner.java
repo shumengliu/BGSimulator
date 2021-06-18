@@ -25,7 +25,7 @@ public class BattleRunner {
     private void initializeQueueFromMinionsMap(EnumMap<Position, Minion> minions) {
         for (Position position : minions.keySet()) {
             BattleQueue bq = getBattleQueueByPosition(position);
-            bq.addMinion(minions.get(position));
+            bq.addCloneOfMinion(minions.get(position));
         }
     }
 
@@ -104,7 +104,7 @@ public class BattleRunner {
      * @param attacker the attacking minion
      * @param defender the attacked minion
      */
-    public void minionsLoseHPFromAttack(Minion attacker, Minion defender) {
+    private void minionsLoseHPFromAttack(Minion attacker, Minion defender) {
         assert attacker.isAlive();
         assert defender.isAlive();
         attacker.loseHP(defender.getAttack());

@@ -20,8 +20,9 @@ public class BattleQueue {
         return minions.size();
     }
 
-    public void addMinion(Minion minion) {
-        minions.add(minion);
+    public void addCloneOfMinion(Minion minion) {
+        Minion clone = new Minion(minion);
+        minions.add(clone);
     }
 
     public boolean hasLivingMinion() {
