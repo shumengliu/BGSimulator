@@ -16,6 +16,7 @@ class MinionTest {
 
     @Test
     void getName() {
+        
     }
 
     @Test

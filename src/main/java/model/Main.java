@@ -11,14 +11,14 @@ public class Main {
     }
 
     private static void loadBoard1() {
-        simulator.addMinionToPosition(new Minion("B1", 3, 3, 2), Position.A1);
-        simulator.addMinionToPosition(new Minion("B2", 2, 2, 2), Position.A2);
-        simulator.addMinionToPosition(new Minion("B3", 1, 1, 1), Position.A3);
-        simulator.addMinionToPosition(new Minion("A1", 2, 2, 2), Position.B1);
-        simulator.addMinionToPosition(new Minion("A2", 2, 4, 2), Position.B2);
-        simulator.addMinionToPosition(new Minion("A3", 3, 2, 1), Position.B3);
-        simulator.addMinionToPosition(new Minion("A4", 2, 3, 1), Position.B4);
-        simulator.addMinionToPosition(new Minion("A5", 2, 2, 2), Position.B5);
+        simulator.addMinionToBoard(new Minion("A1", 3, 3, 2), Position.A1);
+        simulator.addMinionToBoard(new Minion("A2", 2, 2, 2), Position.A2);
+        simulator.addMinionToBoard(new Minion("A3", 1, 1, 1), Position.A3);
+        simulator.addMinionToBoard(new Minion("B1", 2, 2, 2), Position.B1);
+        simulator.addMinionToBoard(new Minion("B2", 2, 4, 2), Position.B2);
+        simulator.addMinionToBoard(new Minion("B3", 3, 2, 1), Position.B3);
+        simulator.addMinionToBoard(new Minion("B4", 2, 3, 1), Position.B4);
+        simulator.addMinionToBoard(new Minion("B5", 2, 2, 2), Position.B5);
     }
 
 //    private static void loadBoard2() {

@@ -8,9 +8,10 @@ public class Simulator {
 
     public Simulator() {
         board = new Board();
+        runner = new BattleRunner();
     }
 
-    public void addMinionToPosition(Minion minion, Position position) {
+    public void addMinionToBoard(Minion minion, Position position) {
         board.addMinionToPosition(minion, position);
     }
 
@@ -23,6 +24,7 @@ public class Simulator {
      */
     public void simulateOnce() {
         board.printBoard();
+        runner.initializeQueuesFromBoard(board);
         runner.battlePhase();
         runner.printBattleResult();
     }
