@@ -13,18 +13,15 @@ import java.util.Map;
 public class Board {
     private final EnumMap<Position, Minion> minions;
 
-    /**
-     * Constructor of the Battleground class.
-     */
     public Board() {
         minions = new EnumMap<>(Position.class);
     }
 
     /**
-     * Print the position at the start of combat.
+     * Convert the board state to a string.
+     * This does not show minion names.
      */
-    public void printBoard() {
-        System.out.println("Starting Position");
+    public String toString() {
         StringBuilder bufferA = new StringBuilder("PlayerA: ");
         StringBuilder bufferB = new StringBuilder("PlayerB: ");
         for (Map.Entry<Position, Minion> entry : minions.entrySet()) {
@@ -40,8 +37,11 @@ public class Board {
                 bufferB.append("  ");
             }
         }
-        System.out.println(bufferA.toString());
-        System.out.println(bufferB.toString());
+        return "Starting Position\n" + bufferA.toString() + '\n' + bufferB.toString();
+    }
+
+    public Minion getMinionByPosition(Position position) {
+        return minions.get(position);
     }
 
     public EnumMap<Position, Minion> getMinions() {

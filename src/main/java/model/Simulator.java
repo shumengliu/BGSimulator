@@ -23,7 +23,7 @@ public class Simulator {
      * Minions are modified after this type of combat.
      */
     public void simulateOnce() {
-        board.printBoard();
+        System.out.println(board.toString());
         runner.initializeQueuesFromBoard(board);
         runner.battlePhase();
         runner.printBattleResult();
@@ -36,7 +36,7 @@ public class Simulator {
      * @param numberOfSims Number of combat simulations.
      */
     public void simulate(int numberOfSims) {
-        board.printBoard();
+        System.out.println(board.toString());
         double winA = 0;
         double winB = 0;
         double draw = 0;
