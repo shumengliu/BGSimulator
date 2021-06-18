@@ -11,17 +11,13 @@ public class BattleQueue {
     // index of the next minion to attack
     private int front;
 
-    public BattleQueue(ArrayList<Minion> minionsOnBoard) {
-        front = 0;
-        minions = new ArrayList<>();
-        for (Minion minion : minionsOnBoard) {
-            minions.add(new Minion(minion));
-        }
-    }
-
     public BattleQueue() {
         front = 0;
         minions = new ArrayList<>();
+    }
+
+    public int size() {
+        return minions.size();
     }
 
     public void addMinion(Minion minion) {
@@ -74,5 +70,9 @@ public class BattleQueue {
      */
     public int getTierSum() {
         return minions.stream().map(Minion::getTier).mapToInt(Integer::intValue).sum();
+    }
+
+    public void clearAllMinions() {
+        minions.clear();
     }
 }

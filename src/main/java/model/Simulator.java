@@ -4,6 +4,8 @@ public class Simulator {
 
     private final Board board;
 
+    private BattleRunner runner;
+
     public Simulator() {
         board = new Board();
     }
@@ -21,8 +23,8 @@ public class Simulator {
      */
     public void simulateOnce() {
         board.printBoard();
-        board.battlePhase();
-        board.printBattleResult();
+        runner.battlePhase();
+        runner.printBattleResult();
     }
 
     /**
