@@ -22,7 +22,7 @@ public class BattleRunner {
         initializeQueueFromMinionsMap(minions);
     }
 
-    private void initializeQueueFromMinionsMap(EnumMap<Position, Minion> minions) {
+    private void initializeQueuesFromMinionsMap(EnumMap<Position, Minion> minions) {
         for (Position position : minions.keySet()) {
             BattleQueue bq = getBattleQueueByPosition(position);
             bq.addCloneOfMinion(minions.get(position));
@@ -76,7 +76,7 @@ public class BattleRunner {
      *
      * @return True if the battle is viable.
      */
-    public boolean battleViable() {
+    private boolean battleViable() {
         // Check if there are alive minions in both lists.
         return (queueA.hasLivingMinion() && queueB.hasLivingMinion());
     }
