@@ -19,7 +19,7 @@ public class BattleRunner {
         queueA.clearAllMinions();
         queueB.clearAllMinions();
         EnumMap<Position, Minion> minions = board.getMinions();
-        initializeQueueFromMinionsMap(minions);
+        initializeQueuesFromMinionsMap(minions);
     }
 
     private void initializeQueuesFromMinionsMap(EnumMap<Position, Minion> minions) {
