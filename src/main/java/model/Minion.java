@@ -20,13 +20,14 @@ public class Minion {
 
     private final int tier;
 
-    /**
-     * Create an instance of Minion.
-     *
-     * @param name
-     * @param attack
-     * @param health
-     */
+    public Minion() {
+        name = "Default Minion";
+        atk = 1;
+        currentHP = 1;
+        tier = 1;
+        alive = true;
+    }
+
     public Minion(String name, int attack, int health, int tier) {
         this.name = name;
         atk = attack;
