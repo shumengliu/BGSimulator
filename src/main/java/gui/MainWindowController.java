@@ -5,8 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import model.Simulator;
 
 public class MainWindowController {
+    private Simulator simulator;
+
     @FXML
     public Label minionNameA1;
     @FXML
@@ -66,11 +69,15 @@ public class MainWindowController {
     public Button createMinionButtonB7;
 
     @FXML
-    public void createMinion(ActionEvent event) {
-         Button button = (Button) event.getSource();
-         BorderPane borderPane = (BorderPane) button.getParent();
-         Label minionName = (Label) borderPane.getCenter();
-         minionName.setText("Here is a minion.");
+    public void initialize() {
+        simulator = new Simulator();
     }
 
+    @FXML
+    public void createMinion(ActionEvent event) {
+        Button button = (Button) event.getSource();
+        BorderPane borderPane = (BorderPane) button.getParent();
+        Label minionName = (Label) borderPane.getCenter();
+        minionName.setText("Here is a minion.");
+    }
 }

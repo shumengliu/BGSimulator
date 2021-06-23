@@ -1,217 +1,54 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.EnumMap;
+import java.util.Map;
 
 /**
- * This is a class simulates the battleground. The main function of the
- * battleground is to implement the battle phase of the game.
+ * This is a class simulates the battleground.
+ * This class only cares about minions' existence on the battlegrounds but not the battle phase.
+ * For battle phase, please see BattleRunner.java.
  *
  * @author HonestBook
  */
 public class Board {
-    private ArrayList<Minion> minionsA;
-    private ArrayList<Minion> minionsB;
+    private final EnumMap<Position, Minion> minions;
 
-    private BattleQueue queueA;
-    private BattleQueue queueB;
-
-    Random random = new Random();
-
-    /**
-     * Constructor of the Battleground class.
-     */
     public Board() {
-        minionsA = new ArrayList<>();
-        minionsB = new ArrayList<>();
-    }
-
-//    /**
-//     * Simulate a combat and return an integer
-//     * indicating the result of the combat.
-//     * Note that the minions remain intact
-//     * after this type of combat.
-//     *
-//     * @return Either 1 (player A wins), 0 (draw), -1 (player B wins)
-//     */
-//    public int combat() {
-//        // Create attack queue.
-//        model.BattleQueue queueA = new model.BattleQueue(minionsA);
-//        model.BattleQueue queueB = new model.BattleQueue(minionsB);
-//
-//        battlePhase();
-//
-//        if (queueA.hasLivingMinion()) {
-//            return 1;
-//        } else if (queueB.hasLivingMinion()) {
-//            return -1;
-//        } else {
-//            return 0;
-//        }
-//    }
-
-    /**
-     * The battle phase of a combat.
-     */
-    public void battlePhase() {
-        queueA = new BattleQueue(minionsA);
-        queueB = new BattleQueue(minionsB);
-        // A flag indicating whose turn to attack.
-        // True if this is player A's turn to attack.
-        boolean turn = true;
-        // There is a fifty percent chance that player B starts first.
-        if (random.nextInt(100) < 50) {
-            turn = false;
-        }
-
-        // Each iteration of this loop represents one attack.
-        while (battleViable()) {
-            // Select attacker and defender
-            Minion attacker = getNextAttackerByTurn(turn);
-            Minion defender = getNextDefenderByTurn(turn);
-
-            removeDeadMinions(attacker, defender, turn);
-            attack(attacker, defender);
-            // Change attacking player.
-            turn = !turn;
-        }
+        minions = new EnumMap<>(Position.class);
     }
 
     /**
-     * Print the position at the start of combat.
+     * Convert the board state to a string.
+     * This does not show minion names.
      */
-    public void printStartingPosition() {
-        System.out.println("Starting Position");
+    public String toString() {
         StringBuilder bufferA = new StringBuilder("PlayerA: ");
-        for (Minion minion : minionsA) {
-            bufferA.append(minion.getAttack());
-            bufferA.append("-");
-            bufferA.append(minion.getHealth());
-            bufferA.append("  ");
-        }
         StringBuilder bufferB = new StringBuilder("PlayerB: ");
-        for (Minion minion : minionsB) {
-            bufferB.append(minion.getAttack());
-            bufferB.append("-");
-            bufferB.append(minion.getHealth());
-            bufferB.append("  ");
+        for (Map.Entry<Position, Minion> entry : minions.entrySet()) {
+            if (entry.getKey().getSide() == Side.A) {
+                bufferA.append(entry.getValue().getAttack());
+                bufferA.append("-");
+                bufferA.append(entry.getValue().getHealth());
+                bufferA.append("  ");
+            } else {
+                bufferB.append(entry.getValue().getAttack());
+                bufferB.append("-");
+                bufferB.append(entry.getValue().getHealth());
+                bufferB.append("  ");
+            }
         }
-        System.out.println(bufferB.toString());
-        System.out.println(bufferA.toString());
-        System.out.println("Combat!");
+        return "Starting Position\n" + bufferA.toString() + '\n' + bufferB.toString();
     }
 
-    /**
-     * Print the result of a battle.
-     */
-    public void printBattleResult() {
-        StringBuilder buffer = new StringBuilder("Result: ");
-        if (queueA.hasLivingMinion()) {
-            int damage = queueA.getTierSum();
-            buffer.append("PlayerA wins! ");
-            buffer.append("PlayerB loses ");
-            buffer.append(damage);
-            buffer.append(" HP.");
-        } else if (queueB.hasLivingMinion()) {
-            int damage = queueB.getTierSum();
-            buffer.append("PlayerB wins! ");
-            buffer.append("PlayerA loses ");
-            buffer.append(damage);
-            buffer.append(" HP.");
-        } else {
-            buffer.append("Draw!");
-        }
-        System.out.println(buffer.toString());
+    public Minion getMinionByPosition(Position position) {
+        return minions.get(position);
     }
 
-    /**
-     * Given the turn, return the next minion to attack from the battle queue.
-     *
-     * @param turn True if it is playerA's turn False otherwise
-     * @return the next minion to attack
-     */
-    private Minion getNextAttackerByTurn(boolean turn) {
-        return turn ? queueA.getNextAttacker() : queueB.getNextAttacker();
+    public EnumMap<Position, Minion> getMinions() {
+        return minions;
     }
 
-    /**
-     * Given the turn, return the next minion to be attacked from the battle queue.
-     *
-     * @param turn True if it is playerA's turn False otherwise
-     * @return the next minion to attack
-     */
-    private Minion getNextDefenderByTurn(boolean turn) {
-        return turn ? queueB.getNextDefender() : queueA.getNextDefender();
-    }
-
-    /**
-     * Remove any dead minion as the consequence of an attack.
-     *
-     * @param turn True if it is playerA's turn False otherwise
-     */
-    private void removeDeadMinions(Minion attacker, Minion defender, boolean turn) {
-        if (turn) {
-            queueA.removeIfDead(attacker);
-            queueB.removeIfDead(defender);
-        } else {
-            queueA.removeIfDead(defender);
-            queueB.removeIfDead(attacker);
-        }
-    }
-
-
-    /**
-     * One attack in a battle. Both minions involved loses HP equivalent to the
-     * other's attack.
-     *
-     * @param attacker the attacking minion
-     * @param defender the attacked minion
-     */
-    public void attack(Minion attacker, Minion defender) {
-        assert attacker.isAlive();
-        assert defender.isAlive();
-        attacker.loseHP(defender.getAttack());
-        defender.loseHP(attacker.getAttack());
-        System.out.println(attacker.getName() + " attacked " + defender.getName() + ".");
-    }
-
-    /**
-     * Return a list of minions of player A.
-     */
-    public ArrayList<Minion> getMinionsA() {
-        return minionsA;
-    }
-
-    /**
-     * Return a list of minions of player B.
-     */
-    public ArrayList<Minion> getMinionsB() {
-        return minionsB;
-    }
-
-    /**
-     * Add a minion to one of the players. This usually works with calling the
-     * constructor of model.Minion in the parameter to create a new minion.
-     *
-     * @param minion The minion to add.
-     * @param side   The owner of this minion.
-     */
-    public void addMinion(Minion minion, Side side) {
-        if (side == Side.A) {
-            minionsA.add(minion);
-        } else {
-            minionsB.add(minion);
-        }
-    }
-
-    /**
-     * Return if the battle will continue. The battle continues when both players
-     * have at least one minion alive.
-     *
-     * @return True if the battle is viable.
-     */
-    public boolean battleViable() {
-        // Check if there are alive minions in both lists.
-        return (queueA.hasLivingMinion() && queueB.hasLivingMinion());
+    public void addMinionToPosition(Minion minion, Position position) {
+        minions.put(position, minion);
     }
 }

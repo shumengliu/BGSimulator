@@ -6,17 +6,23 @@ import java.util.Random;
 public class BattleQueue {
     static private final Random random = new Random();
 
-    private ArrayList<Minion> minions;
+    private final ArrayList<Minion> minions;
 
     // index of the next minion to attack
     private int front;
 
-    public BattleQueue(ArrayList<Minion> minionsOnBoard) {
+    public BattleQueue() {
         front = 0;
         minions = new ArrayList<>();
-        for (Minion minion : minionsOnBoard) {
-            minions.add(new Minion(minion));
-        }
+    }
+
+    public int size() {
+        return minions.size();
+    }
+
+    public void addCloneOfMinion(Minion minion) {
+        Minion clone = new Minion(minion);
+        minions.add(clone);
     }
 
     public boolean hasLivingMinion() {
@@ -65,5 +71,9 @@ public class BattleQueue {
      */
     public int getTierSum() {
         return minions.stream().map(Minion::getTier).mapToInt(Integer::intValue).sum();
+    }
+
+    public void clearAllMinions() {
+        minions.clear();
     }
 }
