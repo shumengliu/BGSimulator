@@ -1,11 +1,11 @@
 package gui;
 
 import com.google.common.collect.ImmutableMap;
+import gui.components.MinionPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
 import model.Minion;
 import model.Position;
 import model.Simulator;
@@ -15,7 +15,7 @@ import java.util.Map;
 public class MainWindowController {
     private Simulator simulator;
 
-    private Map<BorderPane, Position> panePositionMap;
+    private Map<MinionPane, Position> panePositionMap;
     @FXML
     public Label minionNameA1;
     @FXML
@@ -75,33 +75,33 @@ public class MainWindowController {
     public Button createMinionButtonB7;
 
     @FXML
-    public BorderPane minionPaneA1;
+    public MinionPane minionPaneA1;
     @FXML
-    public BorderPane minionPaneA2;
+    public MinionPane minionPaneA2;
     @FXML
-    public BorderPane minionPaneA3;
+    public MinionPane minionPaneA3;
     @FXML
-    public BorderPane minionPaneA4;
+    public MinionPane minionPaneA4;
     @FXML
-    public BorderPane minionPaneA5;
+    public MinionPane minionPaneA5;
     @FXML
-    public BorderPane minionPaneA6;
+    public MinionPane minionPaneA6;
     @FXML
-    public BorderPane minionPaneA7;
+    public MinionPane minionPaneA7;
     @FXML
-    public BorderPane minionPaneB1;
+    public MinionPane minionPaneB1;
     @FXML
-    public BorderPane minionPaneB2;
+    public MinionPane minionPaneB2;
     @FXML
-    public BorderPane minionPaneB3;
+    public MinionPane minionPaneB3;
     @FXML
-    public BorderPane minionPaneB4;
+    public MinionPane minionPaneB4;
     @FXML
-    public BorderPane minionPaneB5;
+    public MinionPane minionPaneB5;
     @FXML
-    public BorderPane minionPaneB6;
+    public MinionPane minionPaneB6;
     @FXML
-    public BorderPane minionPaneB7;
+    public MinionPane minionPaneB7;
 
     @FXML
     public void initialize() {
@@ -110,7 +110,7 @@ public class MainWindowController {
     }
 
     private void initializeBorderPanePositionMap() {
-        panePositionMap = new ImmutableMap.Builder<BorderPane, Position>()
+        panePositionMap = new ImmutableMap.Builder<MinionPane, Position>()
                 .put(minionPaneA1, Position.A1)
                 .put(minionPaneA2, Position.A2)
                 .put(minionPaneA3, Position.A3)
@@ -131,12 +131,12 @@ public class MainWindowController {
     @FXML
     public void createMinion(ActionEvent event) {
         Button button = (Button) event.getSource();
-        BorderPane borderPane = (BorderPane) button.getParent();
-        Position position = getPositionByBorderPane(borderPane);
+        MinionPane minionPane = (MinionPane) button.getParent();
+        Position position = getPositionByMinionPane(minionPane);
         simulator.addMinionToBoard(new Minion(), position);
     }
 
-    private Position getPositionByBorderPane(BorderPane pane) {
+    private Position getPositionByMinionPane(MinionPane pane) {
         return panePositionMap.get(pane);
     }
 //    private BorderPane getParentBorderPaneFromCreationButton(Button button) {

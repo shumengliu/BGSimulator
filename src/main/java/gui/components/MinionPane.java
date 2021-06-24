@@ -1,4 +1,8 @@
 package gui.components;
 
-public class MinionPane {
+import javafx.scene.layout.BorderPane;
+
+public class MinionPane extends BorderPane {
+
+
 }

@@ -8,13 +8,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import gui.components.MinionPane?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainWindowController">
    <center>
       <SplitPane dividerPositions="0.5" orientation="VERTICAL" BorderPane.alignment="CENTER">
          <items>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <BorderPane fx:id="minionPaneA1" prefHeight="196.0" prefWidth="143.0">
+                  <MinionPane fx:id="minionPaneA1" prefHeight="196.0" prefWidth="143.0">
                      <bottom>
                         <HBox prefHeight="56.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -29,8 +30,8 @@
                      <top>
                         <Button fx:id="createMinionButtonA1" mnemonicParsing="false" onAction="#createMinion" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
-                  </BorderPane>
-                  <BorderPane fx:id="minionPaneA2" prefHeight="196.0" prefWidth="143.0">
+                  </MinionPane>
+                  <MinionPane fx:id="minionPaneA2" prefHeight="196.0" prefWidth="143.0">
                      <bottom>
                         <HBox prefHeight="56.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -45,8 +46,8 @@
                      <top>
                         <Button mnemonicParsing="false" onAction="#createMinion" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
-                  </BorderPane>
-                  <BorderPane fx:id="minionPaneA3" prefHeight="196.0" prefWidth="143.0">
+                  </MinionPane>
+                  <MinionPane fx:id="minionPaneA3" prefHeight="196.0" prefWidth="143.0">
                      <bottom>
                         <HBox prefHeight="56.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -61,8 +62,8 @@
                      <top>
                         <Button mnemonicParsing="false" onAction="#createMinion" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
-                  </BorderPane>
-                  <BorderPane fx:id="minionPaneA4" prefHeight="196.0" prefWidth="143.0">
+                  </MinionPane>
+                  <MinionPane fx:id="minionPaneA4" prefHeight="196.0" prefWidth="143.0">
                      <bottom>
                         <HBox prefHeight="56.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -77,8 +78,8 @@
                      <top>
                         <Button mnemonicParsing="false" onAction="#createMinion" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
-                  </BorderPane>
-                  <BorderPane fx:id="minionPaneA5" prefHeight="196.0" prefWidth="143.0">
+                  </MinionPane>
+                  <MinionPane fx:id="minionPaneA5" prefHeight="196.0" prefWidth="143.0">
                      <bottom>
                         <HBox prefHeight="56.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -93,8 +94,8 @@
                      <top>
                         <Button mnemonicParsing="false" onAction="#createMinion" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
-                  </BorderPane>
-                  <BorderPane fx:id="minionPaneA6" prefHeight="196.0" prefWidth="143.0">
+                  </MinionPane>
+                  <MinionPane fx:id="minionPaneA6" prefHeight="196.0" prefWidth="143.0">
                      <bottom>
                         <HBox prefHeight="56.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -109,8 +110,8 @@
                      <top>
                         <Button mnemonicParsing="false" onAction="#createMinion" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
-                  </BorderPane>
-                  <BorderPane fx:id="minionPaneA7" prefHeight="196.0" prefWidth="143.0">
+                  </MinionPane>
+                  <MinionPane fx:id="minionPaneA7" prefHeight="196.0" prefWidth="143.0">
                      <bottom>
                         <HBox prefHeight="56.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -125,12 +126,12 @@
                      <top>
                         <Button mnemonicParsing="false" onAction="#createMinion" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
-                  </BorderPane>
+                  </MinionPane>
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <BorderPane fx:id="minionPaneB1" prefHeight="196.0" prefWidth="143.0">
+                  <MinionPane fx:id="minionPaneB1" prefHeight="196.0" prefWidth="143.0">
                      <bottom>
                         <HBox prefHeight="56.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -145,8 +146,8 @@
                      <top>
                         <Button mnemonicParsing="false" onAction="#createMinion" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
-                  </BorderPane>
-                  <BorderPane fx:id="minionPaneB2" prefHeight="196.0" prefWidth="143.0">
+                  </MinionPane>
+                  <MinionPane fx:id="minionPaneB2" prefHeight="196.0" prefWidth="143.0">
                      <bottom>
                         <HBox prefHeight="56.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -161,8 +162,8 @@
                      <top>
                         <Button mnemonicParsing="false" onAction="#createMinion" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
-                  </BorderPane>
-                  <BorderPane fx:id="minionPaneB3" prefHeight="196.0" prefWidth="143.0">
+                  </MinionPane>
+                  <MinionPane fx:id="minionPaneB3" prefHeight="196.0" prefWidth="143.0">
                      <bottom>
                         <HBox prefHeight="56.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -177,8 +178,8 @@
                      <top>
                         <Button mnemonicParsing="false" onAction="#createMinion" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
-                  </BorderPane>
-                  <BorderPane fx:id="minionPaneB4" prefHeight="196.0" prefWidth="143.0">
+                  </MinionPane>
+                  <MinionPane fx:id="minionPaneB4" prefHeight="196.0" prefWidth="143.0">
                      <bottom>
                         <HBox prefHeight="56.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -193,8 +194,8 @@
                      <top>
                         <Button mnemonicParsing="false" onAction="#createMinion" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
-                  </BorderPane>
-                  <BorderPane fx:id="minionPaneB5" prefHeight="196.0" prefWidth="143.0">
+                  </MinionPane>
+                  <MinionPane fx:id="minionPaneB5" prefHeight="196.0" prefWidth="143.0">
                      <bottom>
                         <HBox prefHeight="56.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -209,8 +210,8 @@
                      <top>
                         <Button mnemonicParsing="false" onAction="#createMinion" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
-                  </BorderPane>
-                  <BorderPane fx:id="minionPaneB6" prefHeight="196.0" prefWidth="143.0">
+                  </MinionPane>
+                  <MinionPane fx:id="minionPaneB6" prefHeight="196.0" prefWidth="143.0">
                      <bottom>
                         <HBox prefHeight="56.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -225,8 +226,8 @@
                      <top>
                         <Button mnemonicParsing="false" onAction="#createMinion" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
-                  </BorderPane>
-                  <BorderPane fx:id="minionPaneB7" prefHeight="196.0" prefWidth="143.0">
+                  </MinionPane>
+                  <MinionPane fx:id="minionPaneB7" prefHeight="196.0" prefWidth="143.0">
                      <bottom>
                         <HBox prefHeight="56.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -241,7 +242,7 @@
                      <top>
                         <Button mnemonicParsing="false" onAction="#createMinion" text="Add/Modify java.model.Minion" BorderPane.alignment="CENTER" />
                      </top>
-                  </BorderPane>
+                  </MinionPane>
                </children>
             </HBox>
          </items>
