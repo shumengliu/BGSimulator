@@ -4,7 +4,7 @@ public class Simulator {
 
     private final Board board;
 
-    private BattleRunner runner;
+    private final BattleRunner runner;
 
     public Simulator() {
         board = new Board();

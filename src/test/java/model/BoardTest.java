@@ -82,9 +82,10 @@ class BoardTest {
         board.addMinionToPosition(minionB1, Position.B1);
         board.addMinionToPosition(minionB2, Position.B2);
         board.addMinionToPosition(minionB3, Position.B3);
-        String expected = "Starting Position\n" +
-                "PlayerA: 2-1  2-2  2-3  \n" +
-                "PlayerB: 3-1  3-2  3-3  ";
+        String expected = """
+                Starting Position
+                PlayerA: 2-1  2-2  2-3 \s
+                PlayerB: 3-1  3-2  3-3 \s""";
         assertEquals(expected, board.toString());
     }
 }
