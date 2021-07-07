@@ -18,9 +18,9 @@ public class MinionPane extends BorderPane {
     private Position position;
     private Minion minion;
     @FXML
-    private TextField atkField;
+    private IntField atkField;
     @FXML
-    private TextField healthField;
+    private IntField healthField;
     @FXML
     private Button createMinionButton;
 
@@ -39,31 +39,8 @@ public class MinionPane extends BorderPane {
     }
 
     private void addEventListeners() {
-        setTextFormatters();
         setModifyAttackListener();
         setModifyHealthListener();
-    }
-
-    private void setTextFormatters() {
-        setTextFormatter(atkField);
-        setTextFormatter(healthField);
-    }
-
-    private void setTextFormatter(TextField field) {
-        field.setTextFormatter(new TextFormatter<>(c -> {
-            if (c.isContentChange()) {
-                if (c.getControlNewText().length() == 0) {
-                    return c;
-                }
-                try {
-                    Integer.parseInt(c.getControlNewText());
-                    return c;
-                } catch (NumberFormatException e) {
-                    return null;
-                }
-            }
-            return c;
-        }));
     }
 
     private void setModifyAttackListener() {
@@ -81,7 +58,6 @@ public class MinionPane extends BorderPane {
             updateMinionInBoard();
         });
     }
-
 
     @FXML
     public void createMinion(ActionEvent event) {
