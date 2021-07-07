@@ -1,12 +1,17 @@
 package gui;
 
 import gui.components.MinionPane;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import model.Position;
 import model.Simulator;
 
 
 public class MainWindowController {
+    @FXML
+    public Button simulateButton;
+
     private Simulator simulator;
 
     @FXML
@@ -44,6 +49,11 @@ public class MainWindowController {
         initializeMinionPanes();
     }
 
+    @FXML
+    public void runSimulationOnce(ActionEvent event) {
+        simulator.simulateOnce();
+    }
+
     private void initializeMinionPanes() {
         minionPaneA1.setSimulator(simulator);
         minionPaneA2.setSimulator(simulator);
@@ -73,5 +83,11 @@ public class MainWindowController {
         minionPaneB5.setPosition(Position.B5);
         minionPaneB6.setPosition(Position.B6);
         minionPaneB7.setPosition(Position.B7);
+    }
+
+    // setters for testing
+
+    public void setSimulator(Simulator simulator) {
+        this.simulator = simulator;
     }
 }
