@@ -4,7 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Simulator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,6 +12,7 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 import org.testfx.matcher.control.LabeledMatchers;
+import org.testfx.matcher.control.TextInputControlMatchers;
 
 @ExtendWith(ApplicationExtension.class)
 public class TestFXStudyTest {
@@ -37,8 +37,16 @@ public class TestFXStudyTest {
 
     @Test
     public void clickButtonUsingFxRobot(FxRobot robot) {
-        robot.clickOn("#Simulate");
+        robot.clickOn("#simulateButton");
 
         FxAssert.verifyThat("#simulateButton", LabeledMatchers.hasText("Simulate"));
+    }
+
+    @Test
+    public void writeToTextField(FxRobot robot) {
+        robot.clickOn("#minionPaneA1 #createMinionButton");
+        robot.doubleClickOn("#minionPaneA1 #atkField");
+        robot.write("42");
+        FxAssert.verifyThat("#minionPaneA1 #atkField", TextInputControlMatchers.hasText("42"));
     }
 }

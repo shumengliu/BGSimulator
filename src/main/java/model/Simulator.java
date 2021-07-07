@@ -15,6 +15,10 @@ public class Simulator {
         board.addMinionToPosition(minion, position);
     }
 
+    public Board getBoard() {
+        return board;
+    }
+
     /**
      * Simulate the combat once.
      * Position (minions) is printed at the start of the combat.

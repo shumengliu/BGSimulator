@@ -3,6 +3,7 @@ package gui.components;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.BorderPane;
@@ -20,6 +21,8 @@ public class MinionPane extends BorderPane {
     private TextField atkField;
     @FXML
     private TextField healthField;
+    @FXML
+    private Button createMinionButton;
 
     public MinionPane() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/minion-pane.fxml"));

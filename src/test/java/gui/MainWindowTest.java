@@ -4,20 +4,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Position;
 import model.Simulator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.testfx.api.FxAssert;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
+import org.testfx.matcher.control.TextInputControlMatchers;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(ApplicationExtension.class)
 public class MainWindowTest {
 
     private Simulator simulator;
+
+    MainWindowController controller;
 
     @Start
     public void start(Stage stage) throws Exception {
@@ -27,10 +33,7 @@ public class MainWindowTest {
         stage.show();
         stage.toFront();
 
-        // inject mocked simulator
-        MainWindowController controller = loader.getController();
-        simulator = mock(Simulator.class);
-        controller.setSimulator(simulator);
+        controller = loader.getController();
     }
 
     @BeforeEach
@@ -39,9 +42,39 @@ public class MainWindowTest {
     }
 
     @Test
-    public void clickOnSimulateButtonRunsSimulationOnce(FxRobot robot) {
+    public void clickingOnSimulateButtonRunsSimulationOnce(FxRobot robot) {
+        // inject mocked simulator
+        simulator = mock(Simulator.class);
+        controller.setSimulator(simulator);
+
         robot.clickOn("#simulateButton");
         verify(simulator, times(1)).simulateOnce();
+    }
+
+    @Test
+    public void modifyingAttackFieldChangesMinionAttack(FxRobot robot) {
+        robot.clickOn("#minionPaneA1 #createMinionButton");
+        robot.doubleClickOn("#minionPaneA1 #atkField");
+        robot.write("42");
+        FxAssert.verifyThat("#minionPaneA1 #atkField", TextInputControlMatchers.hasText("42"));
+        assertEquals(42, controller.getSimulator().getBoard().getMinionByPosition(Position.A1).getAttack());
+    }
+
+    @Test
+    public void modifyingHealthFieldChangesMinionHP(FxRobot robot) {
+        robot.clickOn("#minionPaneA1 #createMinionButton");
+        robot.doubleClickOn("#minionPaneA1 #");
+        robot.write("42");
+        FxAssert.verifyThat("#minionPaneA1 #healthField", TextInputControlMatchers.hasText("42"));
+        assertEquals(42, controller.getSimulator().getBoard().getMinionByPosition(Position.A1).getHealth());
+    }
+
+    @Test
+    public void enteringNonNumericCharactersToAttackFieldShouldFail(FxRobot robot) {
+        robot.clickOn("#minionPaneA1 #createMinionButton");
+        robot.doubleClickOn("#minionPaneA1 #atkField");
+        robot.write("abc");
+        FxAssert.verifyThat("#minionPaneA1 #atkField", TextInputControlMatchers.hasText("0"));
     }
 
 }

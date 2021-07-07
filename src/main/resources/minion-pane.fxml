@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.*?>
 <fx:root type="javafx.scene.layout.BorderPane" xmlns="http://javafx.com/javafx/11.0.2"
-         xmlns:fx="http://javafx.com/fxml/1" >
+         xmlns:fx="http://javafx.com/fxml/1">
     <bottom>
         <HBox prefHeight="56.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
@@ -18,7 +18,8 @@
         <Label alignment="CENTER" prefHeight="140.0" prefWidth="199.0" text="myMinion" BorderPane.alignment="CENTER"/>
     </center>
     <top>
-        <Button onAction="#createMinion" mnemonicParsing="false" text="Add/Modify java.model.Minion"
+        <Button fx:id="createMinionButton" onAction="#createMinion" mnemonicParsing="false"
+                text="Add/Modify Minion"
                 BorderPane.alignment="CENTER"/>
     </top>
 </fx:root>

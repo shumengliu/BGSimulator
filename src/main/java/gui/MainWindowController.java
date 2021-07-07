@@ -85,9 +85,13 @@ public class MainWindowController {
         minionPaneB7.setPosition(Position.B7);
     }
 
-    // setters for testing
+    // getters and setters for testing
 
     public void setSimulator(Simulator simulator) {
         this.simulator = simulator;
+    }
+
+    public Simulator getSimulator() {
+        return simulator;
     }
 }
