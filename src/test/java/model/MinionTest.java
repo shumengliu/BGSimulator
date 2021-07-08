@@ -25,6 +25,15 @@ class MinionTest {
     }
 
     @Test
+    void testCreateMinionFromMinionBase() {
+        Minion minion = new Minion(MinionBase.ALLEYCAT);
+        assertEquals("Alleycat", minion.getName());
+        assertEquals(1, minion.getAttack());
+        assertEquals(1, minion.getHealth());
+        assertEquals(1, minion.getTier());
+    }
+
+    @Test
     void minionIsAliveRightAfterConstruction() {
         Minion minion = new Minion("23Dragon", 2, 3, 1);
         assertTrue(minion.isAlive());
