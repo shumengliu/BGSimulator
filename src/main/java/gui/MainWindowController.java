@@ -1,5 +1,6 @@
 package gui;
 
+import gui.components.IntField;
 import gui.components.MinionPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,10 +10,14 @@ import model.Simulator;
 
 
 public class MainWindowController {
-    @FXML
-    public Button simulateButton;
-
     private Simulator simulator;
+
+    @FXML
+    public Button oneSimButton;
+    @FXML
+    public Button multiSimButton;
+    @FXML
+    public IntField numberOfSimField;
 
     @FXML
     public MinionPane minionPaneA1;
@@ -52,6 +57,12 @@ public class MainWindowController {
     @FXML
     public void runSimulationOnce(ActionEvent event) {
         simulator.simulateOnce();
+    }
+
+    @FXML
+    public void runMultiSimul(ActionEvent event) {
+        int numberOfSim = Integer.parseInt(numberOfSimField.getText());
+        simulator.simulate(numberOfSim);
     }
 
     private void initializeMinionPanes() {

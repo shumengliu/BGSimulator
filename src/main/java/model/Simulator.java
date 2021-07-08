@@ -33,32 +33,20 @@ public class Simulator {
         runner.printBattleResult();
     }
 
-    /**
-     * Simulate the combat for a given number of times.
-     * Print the win rate.
-     *
-     * @param numberOfSims Number of combat simulations.
-     */
-    public void simulate(int numberOfSims) {
+    public SimulationResult simulate(int numberOfSims) {
         System.out.println(board.toString());
-        double winA = 0;
-        double winB = 0;
-        double draw = 0;
-//        for (int i = 0; i < numberOfSims; i++) {
-//            int result = board.combat();
-//            if (result == 1) {
-//                winA++;
-//            } else if (result == -1) {
-//                winB++;
-//            } else if (result == 0) {
-//                draw++;
-//            }
-//        }
+        SimulationResult simResult = new SimulationResult();
+        for (int i = 0; i < numberOfSims; i++) {
+            runner.initializeQueuesFromBoard(board);
+            BattleResult battleResult = runner.battlePhase();
+            simResult.parseNextBattleResult(battleResult);
+        }
         // Print win rates.
         System.out.println("Combat was simulated " + numberOfSims + " times.");
-        System.out.println("PlayerB win rate: " + (winB / numberOfSims * 100) + "%");
-        System.out.println("Draw rate: " + (draw / numberOfSims * 100) + "%");
-        System.out.println("PlayerA win rate: " + (winA / numberOfSims * 100) + "%");
+        System.out.println("PlayerA win rate: " + simResult.getWinRateForA() + "%");
+        System.out.println("Draw rate: " + simResult.getDrawRate() + "%");
+        System.out.println("PlayerB win rate: " + simResult.getWinRateForB() + "%");
+        return simResult;
     }
 
     // setters for testing

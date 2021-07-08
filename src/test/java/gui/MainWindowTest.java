@@ -47,8 +47,30 @@ public class MainWindowTest {
         simulator = mock(Simulator.class);
         controller.setSimulator(simulator);
 
-        robot.clickOn("#simulateButton");
+        robot.clickOn("#oneSimButton");
         verify(simulator, times(1)).simulateOnce();
+    }
+
+    @Test
+    public void runSimulation1000TimesByClickingTheMultiSimulButton(FxRobot robot) {
+        // inject mocked simulator
+        simulator = mock(Simulator.class);
+        controller.setSimulator(simulator);
+
+        robot.clickOn("#multiSimButton");
+        verify(simulator, times(1)).simulate(1000);
+    }
+
+    @Test
+    public void runSimulation500TimesByChangingTheSimulField(FxRobot robot) {
+        // inject mocked simulator
+        simulator = mock(Simulator.class);
+        controller.setSimulator(simulator);
+
+        robot.doubleClickOn("#numberOfSimField");
+        robot.write("500");
+        robot.clickOn("#multiSimButton");
+        verify(simulator, times(1)).simulate(500);
     }
 
     @Test

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import static java.util.Map.entry;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -40,7 +41,21 @@ public class SimulatorTest {
         when(board.getMinions()).thenReturn(sampleBoard);
 
         SimulationResult result = simulator.simulate(1000);
-        assertEquals(100, result.getWinRateForA());
+        assertEquals(1, result.getWinRateForA());
+        assertEquals(0, result.getWinRateForB());
+        assertEquals(0, result.getDrawRate());
+    }
+
+    @Test
+    void simulate1000TimesForAFiftyWinRateBoard() {
+        fail();
+        sampleBoard = Map.ofEntries(
+                entry(Position.A1, new Minion())
+        );
+        when(board.getMinions()).thenReturn(sampleBoard);
+
+        SimulationResult result = simulator.simulate(1000);
+        assertEquals(1, result.getWinRateForA());
         assertEquals(0, result.getWinRateForB());
         assertEquals(0, result.getDrawRate());
     }
