@@ -1,6 +1,6 @@
 package model;
 
-import java.util.EnumMap;
+import java.util.Map;
 import java.util.Random;
 
 public class BattleRunner {
@@ -18,11 +18,11 @@ public class BattleRunner {
     public void initializeQueuesFromBoard(Board board) {
         queueA.clearAllMinions();
         queueB.clearAllMinions();
-        EnumMap<Position, Minion> minions = board.getMinions();
+        Map<Position, Minion> minions = board.getMinions();
         initializeQueuesFromMinionsMap(minions);
     }
 
-    private void initializeQueuesFromMinionsMap(EnumMap<Position, Minion> minions) {
+    private void initializeQueuesFromMinionsMap(Map<Position, Minion> minions) {
         for (Position position : minions.keySet()) {
             BattleQueue bq = getBattleQueueByPosition(position);
             bq.addCloneOfMinion(minions.get(position));
@@ -37,13 +37,14 @@ public class BattleRunner {
         }
     }
 
-    public void battlePhase() {
+    public BattleResult battlePhase() {
         decideInitiative();
         // Each iteration of this loop represents one attack.
         while (battleViable()) {
             executeNextAttack();
             alternateTurn();
         }
+        return evaluateResult();
     }
 
     private void decideInitiative() {
@@ -132,6 +133,23 @@ public class BattleRunner {
             nextToAttack = Side.A;
         }
     }
+
+    private BattleResult evaluateResult() {
+        BattleResult result = new BattleResult();
+        if (queueA.hasLivingMinion()) {
+            result.setOutcome(BattleResult.Outcome.WINFORA);
+            result.setDamage(queueA.getTierSum());
+            return result;
+        } else if (queueB.hasLivingMinion()) {
+            result.setOutcome(BattleResult.Outcome.WINFORB);
+            result.setDamage(queueB.getTierSum());
+            return result;
+        } else {
+            result.setOutcome(BattleResult.Outcome.DRAW);
+            return result;
+        }
+    }
+
 
     public void printBattleResult() {
         StringBuilder buffer = new StringBuilder("Result: ");

@@ -11,7 +11,7 @@ import java.util.Map;
  * @author HonestBook
  */
 public class Board {
-    private final EnumMap<Position, Minion> minions;
+    private final Map<Position, Minion> minions;
 
     public Board() {
         minions = new EnumMap<>(Position.class);
@@ -44,7 +44,7 @@ public class Board {
         return minions.get(position);
     }
 
-    public EnumMap<Position, Minion> getMinions() {
+    public Map<Position, Minion> getMinions() {
         return minions;
     }
 
