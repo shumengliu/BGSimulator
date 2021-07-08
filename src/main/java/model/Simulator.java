@@ -12,20 +12,13 @@ public class Simulator {
     }
 
     public void addMinionToBoard(Minion minion, Position position) {
-        board.addMinionToPosition(minion, position);
+        board.setMinionInPosition(minion, position);
     }
 
     public Board getBoard() {
         return board;
     }
 
-    /**
-     * Simulate the combat once.
-     * Position (minions) is printed at the start of the combat.
-     * Result, including winner and damage, is printed
-     * after the combat.
-     * Minions are modified after this type of combat.
-     */
     public void simulateOnce() {
         System.out.println(board.toString());
         runner.initializeQueuesFromBoard(board);
@@ -43,9 +36,9 @@ public class Simulator {
         }
         // Print win rates.
         System.out.println("Combat was simulated " + numberOfSims + " times.");
-        System.out.println("PlayerA win rate: " + simResult.getWinRateForA() + "%");
-        System.out.println("Draw rate: " + simResult.getDrawRate() + "%");
-        System.out.println("PlayerB win rate: " + simResult.getWinRateForB() + "%");
+        System.out.println("PlayerA win rate: " + simResult.getWinRateForA() * 100 + "%");
+        System.out.println("Draw rate: " + simResult.getDrawRate() * 100 + "%");
+        System.out.println("PlayerB win rate: " + simResult.getWinRateForB() * 100 + "%");
         return simResult;
     }
 

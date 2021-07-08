@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Map;
 
 import static java.util.Map.entry;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -47,16 +46,18 @@ public class SimulatorTest {
     }
 
     @Test
-    void simulate1000TimesForAFiftyWinRateBoard() {
-        fail();
+    void simulate1000TimesForAFiftyFiftyWinOrDrawBoard() {
         sampleBoard = Map.ofEntries(
-                entry(Position.A1, new Minion())
+                entry(Position.A1, new Minion("23Murloc", 2, 3, 1)),
+                entry(Position.A2, new Minion("11Murloc", 1, 1, 1)),
+                entry(Position.B1, new Minion("24Demon", 2, 4, 1))
         );
         when(board.getMinions()).thenReturn(sampleBoard);
 
         SimulationResult result = simulator.simulate(1000);
-        assertEquals(1, result.getWinRateForA());
-        assertEquals(0, result.getWinRateForB());
-        assertEquals(0, result.getDrawRate());
+        assertTrue(result.getWinRateForA() > 0.4);
+        assertTrue(result.getWinRateForA() < 0.6);
+        assertTrue(result.getDrawRate() > 0.4);
+        assertTrue(result.getDrawRate() < 0.6);
     }
 }

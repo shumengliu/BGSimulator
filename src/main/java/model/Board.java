@@ -48,7 +48,7 @@ public class Board {
         return minions;
     }
 
-    public void addMinionToPosition(Minion minion, Position position) {
+    public void setMinionInPosition(Minion minion, Position position) {
         minions.put(position, minion);
     }
 }

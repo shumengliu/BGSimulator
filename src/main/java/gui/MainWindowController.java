@@ -5,6 +5,7 @@ import gui.components.MinionPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import model.Board;
 import model.Position;
 import model.Simulator;
 
@@ -66,20 +67,21 @@ public class MainWindowController {
     }
 
     private void initializeMinionPanes() {
-        minionPaneA1.setSimulator(simulator);
-        minionPaneA2.setSimulator(simulator);
-        minionPaneA3.setSimulator(simulator);
-        minionPaneA4.setSimulator(simulator);
-        minionPaneA5.setSimulator(simulator);
-        minionPaneA6.setSimulator(simulator);
-        minionPaneA7.setSimulator(simulator);
-        minionPaneB1.setSimulator(simulator);
-        minionPaneB2.setSimulator(simulator);
-        minionPaneB3.setSimulator(simulator);
-        minionPaneB4.setSimulator(simulator);
-        minionPaneB5.setSimulator(simulator);
-        minionPaneB6.setSimulator(simulator);
-        minionPaneB7.setSimulator(simulator);
+        Board board = simulator.getBoard();
+        minionPaneA1.setBoard(board);
+        minionPaneA2.setBoard(board);
+        minionPaneA3.setBoard(board);
+        minionPaneA4.setBoard(board);
+        minionPaneA5.setBoard(board);
+        minionPaneA6.setBoard(board);
+        minionPaneA7.setBoard(board);
+        minionPaneB1.setBoard(board);
+        minionPaneB2.setBoard(board);
+        minionPaneB3.setBoard(board);
+        minionPaneB4.setBoard(board);
+        minionPaneB5.setBoard(board);
+        minionPaneB6.setBoard(board);
+        minionPaneB7.setBoard(board);
         minionPaneA1.setPosition(Position.A1);
         minionPaneA2.setPosition(Position.A2);
         minionPaneA3.setPosition(Position.A3);

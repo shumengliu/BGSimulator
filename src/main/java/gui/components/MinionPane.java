@@ -4,19 +4,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.BorderPane;
+import model.Board;
 import model.Minion;
 import model.Position;
-import model.Simulator;
 
 import java.io.IOException;
 
 public class MinionPane extends BorderPane {
-    private Simulator simulator;
+    private Board board;
     private Position position;
-    private Minion minion;
+
     @FXML
     private IntField atkField;
     @FXML
@@ -46,32 +44,24 @@ public class MinionPane extends BorderPane {
     private void setModifyAttackListener() {
         atkField.textProperty().addListener((observable, oldValue, newValue) -> {
             int newAttack = Integer.parseInt(newValue);
-            minion.setAttack(newAttack);
-            updateMinionInBoard();
+            board.getMinionByPosition(position).setAttack(newAttack);
         });
     }
 
     private void setModifyHealthListener() {
         healthField.textProperty().addListener((observable, oldValue, newValue) -> {
             int newHP = Integer.parseInt(newValue);
-            minion.setHP(newHP);
-            updateMinionInBoard();
+            board.getMinionByPosition(position).setHP(newHP);
         });
     }
 
     @FXML
     public void createMinion(ActionEvent event) {
-        minion = new Minion();
-        updateMinionInBoard();
+        board.setMinionInPosition(new Minion(), position);
     }
 
-    private void updateMinionInBoard() {
-        simulator.addMinionToBoard(minion, position);
-        simulator.simulateOnce(); // todo delete this when test is completed
-    }
-
-    public void setSimulator(Simulator simulator) {
-        this.simulator = simulator;
+    public void setBoard(Board board) {
+        this.board = board;
     }
 
     public void setPosition(Position position) {
