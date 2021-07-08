@@ -47,6 +47,14 @@ public class Minion {
         alive = true;
     }
 
+    public Minion(MinionBase base) {
+        this.name = base.getName();
+        this.atk = base.getAttack();
+        this.currentHP = base.getHp();
+        this.tier = base.getTier();
+        alive = true;
+    }
+
     /**
      * Reduces the minion's current HP.
      * If its HP is below 0 after reduction, set it to dead.
