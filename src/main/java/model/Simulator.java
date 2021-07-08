@@ -2,9 +2,9 @@ package model;
 
 public class Simulator {
 
-    private final Board board;
+    private Board board;
 
-    private final BattleRunner runner;
+    private BattleRunner runner;
 
     public Simulator() {
         board = new Board();
@@ -61,5 +61,9 @@ public class Simulator {
         System.out.println("PlayerA win rate: " + (winA / numberOfSims * 100) + "%");
     }
 
+    // setters for testing
 
+    public void setBoard(Board board) {
+        this.board = board;
+    }
 }

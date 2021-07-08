@@ -7,7 +7,6 @@ public class BattleQueue {
     static private final Random random = new Random();
 
     private final ArrayList<Minion> minions;
-
     // index of the next minion to attack
     private int front;
 

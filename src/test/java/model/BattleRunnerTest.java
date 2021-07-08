@@ -17,7 +17,6 @@ public class BattleRunnerTest {
 
     private Map<Position, Minion> sampleBoard;
 
-
     @BeforeEach
     void setUp() {
         runner = new BattleRunner();
