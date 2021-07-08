@@ -6,6 +6,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MinionTest {
     @Test
+    void testDefaultConstructor() {
+        Minion minion = new Minion();
+        assertEquals("Default Minion", minion.getName());
+        assertEquals(1, minion.getAttack());
+        assertEquals(1, minion.getHealth());
+        assertEquals(1, minion.getTier());
+        assertTrue(minion.isAlive());
+    }
+
+    @Test
     void testConstructor() {
         Minion minion = new Minion("23Dragon", 2, 3, 1);
         assertEquals("23Dragon", minion.getName());

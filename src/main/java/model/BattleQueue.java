@@ -7,7 +7,6 @@ public class BattleQueue {
     static private final Random random = new Random();
 
     private final ArrayList<Minion> minions;
-
     // index of the next minion to attack
     private int front;
 
@@ -64,16 +63,12 @@ public class BattleQueue {
         }
     }
 
-    /**
-     * Returns the sum of tiers of minions in the queue.
-     *
-     * @return the tier sum
-     */
     public int getTierSum() {
         return minions.stream().map(Minion::getTier).mapToInt(Integer::intValue).sum();
     }
 
-    public void clearAllMinions() {
+    public void reset() {
         minions.clear();
+        front = 0;
     }
 }

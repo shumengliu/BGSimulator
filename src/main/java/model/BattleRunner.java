@@ -1,10 +1,13 @@
 package model;
 
-import java.util.EnumMap;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class BattleRunner {
     private static final Random random = new Random();
+    private static final List<Position> POSITIONS_LIST = Arrays.asList(Position.A1, Position.A2, Position.A3, Position.A4, Position.A5, Position.A6, Position.A7, Position.B1, Position.B2, Position.B3, Position.B4, Position.B5, Position.B6, Position.B7);
 
     private final BattleQueue queueA;
     private final BattleQueue queueB;
@@ -16,16 +19,19 @@ public class BattleRunner {
     }
 
     public void initializeQueuesFromBoard(Board board) {
-        queueA.clearAllMinions();
-        queueB.clearAllMinions();
-        EnumMap<Position, Minion> minions = board.getMinions();
+        queueA.reset();
+        queueB.reset();
+        Map<Position, Minion> minions = board.getMinions();
         initializeQueuesFromMinionsMap(minions);
     }
 
-    private void initializeQueuesFromMinionsMap(EnumMap<Position, Minion> minions) {
-        for (Position position : minions.keySet()) {
-            BattleQueue bq = getBattleQueueByPosition(position);
-            bq.addCloneOfMinion(minions.get(position));
+    private void initializeQueuesFromMinionsMap(Map<Position, Minion> minions) {
+        for (Position position : POSITIONS_LIST) {
+            Minion minion = minions.get(position);
+            if (minion != null) {
+                BattleQueue bq = getBattleQueueByPosition(position);
+                bq.addCloneOfMinion(minions.get(position));
+            }
         }
     }
 
@@ -37,13 +43,15 @@ public class BattleRunner {
         }
     }
 
-    public void battlePhase() {
+    public BattleResult battlePhase() {
         decideInitiative();
         // Each iteration of this loop represents one attack.
         while (battleViable()) {
             executeNextAttack();
             alternateTurn();
         }
+        System.out.println("Battle ended.");
+        return evaluateResult();
     }
 
     private void decideInitiative() {
@@ -132,6 +140,23 @@ public class BattleRunner {
             nextToAttack = Side.A;
         }
     }
+
+    private BattleResult evaluateResult() {
+        BattleResult result = new BattleResult();
+        if (queueA.hasLivingMinion()) {
+            result.setOutcome(BattleResult.Outcome.WINFORA);
+            result.setDamage(queueA.getTierSum());
+            return result;
+        } else if (queueB.hasLivingMinion()) {
+            result.setOutcome(BattleResult.Outcome.WINFORB);
+            result.setDamage(queueB.getTierSum());
+            return result;
+        } else {
+            result.setOutcome(BattleResult.Outcome.DRAW);
+            return result;
+        }
+    }
+
 
     public void printBattleResult() {
         StringBuilder buffer = new StringBuilder("Result: ");

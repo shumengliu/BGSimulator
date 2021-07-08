@@ -160,7 +160,7 @@ class BattleQueueTest {
         queue.addCloneOfMinion(minionSample2);
         queue.addCloneOfMinion(minionSample3);
 
-        queue.clearAllMinions();
+        queue.reset();
         assertEquals(0, queue.size());
     }
 }

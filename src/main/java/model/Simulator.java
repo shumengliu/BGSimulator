@@ -2,7 +2,7 @@ package model;
 
 public class Simulator {
 
-    private final Board board;
+    private Board board;
 
     private BattleRunner runner;
 
@@ -12,16 +12,13 @@ public class Simulator {
     }
 
     public void addMinionToBoard(Minion minion, Position position) {
-        board.addMinionToPosition(minion, position);
+        board.setMinionInPosition(minion, position);
     }
 
-    /**
-     * Simulate the combat once.
-     * Position (minions) is printed at the start of the combat.
-     * Result, including winner and damage, is printed
-     * after the combat.
-     * Minions are modified after this type of combat.
-     */
+    public Board getBoard() {
+        return board;
+    }
+
     public void simulateOnce() {
         System.out.println(board.toString());
         runner.initializeQueuesFromBoard(board);
@@ -29,33 +26,25 @@ public class Simulator {
         runner.printBattleResult();
     }
 
-    /**
-     * Simulate the combat for a given number of times.
-     * Print the win rate.
-     *
-     * @param numberOfSims Number of combat simulations.
-     */
-    public void simulate(int numberOfSims) {
+    public SimulationResult simulate(int numberOfSims) {
         System.out.println(board.toString());
-        double winA = 0;
-        double winB = 0;
-        double draw = 0;
-//        for (int i = 0; i < numberOfSims; i++) {
-//            int result = board.combat();
-//            if (result == 1) {
-//                winA++;
-//            } else if (result == -1) {
-//                winB++;
-//            } else if (result == 0) {
-//                draw++;
-//            }
-//        }
+        SimulationResult simResult = new SimulationResult();
+        for (int i = 0; i < numberOfSims; i++) {
+            runner.initializeQueuesFromBoard(board);
+            BattleResult battleResult = runner.battlePhase();
+            simResult.parseNextBattleResult(battleResult);
+        }
         // Print win rates.
         System.out.println("Combat was simulated " + numberOfSims + " times.");
-        System.out.println("PlayerB win rate: " + (winB / numberOfSims * 100) + "%");
-        System.out.println("Draw rate: " + (draw / numberOfSims * 100) + "%");
-        System.out.println("PlayerA win rate: " + (winA / numberOfSims * 100) + "%");
+        System.out.println("PlayerA win rate: " + simResult.getWinRateForA() * 100 + "%");
+        System.out.println("Draw rate: " + simResult.getDrawRate() * 100 + "%");
+        System.out.println("PlayerB win rate: " + simResult.getWinRateForB() * 100 + "%");
+        return simResult;
     }
 
+    // setters for testing
 
+    public void setBoard(Board board) {
+        this.board = board;
+    }
 }
