@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class BattleQueue {
     static private final Random random = new Random();
@@ -49,6 +51,19 @@ public class BattleQueue {
      * @return the next minion to be attacked
      */
     public Minion getNextDefender() {
+        if (hasAnyTauntMinion()) {
+            List<Minion> tauntMinions = minions.stream().filter(Minion::isTaunt).collect(Collectors.toList());
+            return getRandomMinionFromList(tauntMinions);
+        } else {
+            return getRandomMinionFromList(minions);
+        }
+    }
+
+    private boolean hasAnyTauntMinion() {
+        return minions.stream().anyMatch(Minion::isTaunt);
+    }
+
+    private Minion getRandomMinionFromList(List<Minion> minions) {
         return minions.get(random.nextInt(minions.size()));
     }
 

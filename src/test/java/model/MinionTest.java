@@ -34,6 +34,18 @@ class MinionTest {
     }
 
     @Test
+    void dragonspawnLieutenantShouldBeTaunt() {
+        Minion minion = new Minion(MinionBase.DRAGONSPAWN_LIEUTENANT);
+        assertTrue(minion.isTaunt());
+    }
+
+    @Test
+    void alleyCatShouldNotBeTaunt() {
+        Minion minion = new Minion(MinionBase.ALLEYCAT);
+        assertFalse(minion.isTaunt());
+    }
+
+    @Test
     void minionIsAliveRightAfterConstruction() {
         Minion minion = new Minion("23Dragon", 2, 3, 1);
         assertTrue(minion.isAlive());

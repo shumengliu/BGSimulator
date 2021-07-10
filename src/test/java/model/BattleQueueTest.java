@@ -15,9 +15,9 @@ class BattleQueueTest {
     @BeforeEach
     void setUp() {
         queue = new BattleQueue();
-        minionSample1 = new Minion("23Dragon", 2, 3, 1);
-        minionSample2 = new Minion("11Tiger", 1, 1, 1);
-        minionSample3 = new Minion("33Southsea Captain", 3, 3, 2);
+        minionSample1 = new Minion(MinionBase.MICRO_MACHINE);
+        minionSample2 = new Minion(MinionBase.ALLEYCAT);
+        minionSample3 = new Minion(MinionBase.FREEDEALING_GAMBLER);
     }
 
     @Test
@@ -90,6 +90,35 @@ class BattleQueueTest {
 
         Minion actual = queue.getNextDefender();
         assertEquals(minionSample1.getName(), actual.getName());
+    }
+
+    @Test
+    void getNextDefenderShouldPrioritiseTauntMinions() {
+        minionSample1.addKeyword(Keyword.TAUNT);
+        queue.addCloneOfMinion(minionSample1); // this is taunt
+        queue.addCloneOfMinion(minionSample2);
+        queue.addCloneOfMinion(minionSample3);
+
+        for (int i = 0; i < 10; i++) {
+            Minion actual = queue.getNextDefender();
+            assertEquals(minionSample1.getName(), actual.getName());
+        }
+    }
+
+    @Test
+    void getNextDefenderShouldReturnOneOfTheTauntMinions() {
+        queue.addCloneOfMinion(minionSample1);
+        queue.addCloneOfMinion(minionSample2);
+        queue.addCloneOfMinion(minionSample3);
+        queue.addCloneOfMinion(new Minion(MinionBase.MOLTEN_ROCK)); // this is taunt
+        queue.addCloneOfMinion(new Minion(MinionBase.TWILIGHT_EMISSARY)); // this is taunt
+        queue.addCloneOfMinion(new Minion(MinionBase.ARCANE_ASSISTANT));
+        queue.addCloneOfMinion(new Minion(MinionBase.DECK_SWABBIE));
+
+        for (int i = 0; i < 10; i++) {
+            Minion actual = queue.getNextDefender();
+            assertTrue(actual.isTaunt());
+        }
     }
 
     @Test

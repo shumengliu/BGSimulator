@@ -1,5 +1,7 @@
 package model;
 
+import java.util.EnumSet;
+
 /**
  * This class represents a simple minion in Battlegrounds.
  * A minion has health and attack.
@@ -20,13 +22,7 @@ public class Minion {
 
     private final int tier;
 
-    public Minion() {
-        name = "Default Minion";
-        atk = 1;
-        currentHP = 1;
-        tier = 1;
-        alive = true;
-    }
+    private EnumSet<Keyword> keywords;
 
     public Minion(String name, int attack, int health, int tier) {
         this.name = name;
@@ -34,16 +30,22 @@ public class Minion {
         currentHP = health;
         this.tier = tier;
         alive = true;
+        keywords = EnumSet.noneOf(Keyword.class);
+    }
+
+    public Minion() {
+        this("Default Minion", 1, 1, 1);
     }
 
     /**
      * Constructor for cloning a minion.
      */
-    public Minion(Minion minion) {
-        this.name = minion.getName();
-        this.atk = minion.getAttack();
-        this.currentHP = minion.getHealth();
-        this.tier = minion.getTier();
+    public Minion(Minion other) {
+        this.name = other.name;
+        this.atk = other.atk;
+        this.currentHP = other.currentHP;
+        this.tier = other.tier;
+        this.keywords = EnumSet.copyOf(other.keywords);
         alive = true;
     }
 
@@ -52,6 +54,7 @@ public class Minion {
         this.atk = base.getAttack();
         this.currentHP = base.getHp();
         this.tier = base.getTier();
+        this.keywords = base.getKeywords();
         alive = true;
     }
 
@@ -99,5 +102,13 @@ public class Minion {
 
     public void setHP(int HP) {
         this.currentHP = HP;
+    }
+
+    public void addKeyword(Keyword keyword) {
+        keywords.add(keyword);
+    }
+
+    public boolean isTaunt() {
+        return keywords.contains(Keyword.TAUNT);
     }
 }
