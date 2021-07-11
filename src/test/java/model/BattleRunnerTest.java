@@ -7,6 +7,7 @@ import java.util.Map;
 
 import static java.util.Map.entry;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -46,6 +47,19 @@ public class BattleRunnerTest {
         runner.initializeQueuesFromBoard(board);
 
         BattleResult result = runner.battlePhase();
-        assertEquals(BattleResult.Outcome.WINFORA, result.getOutcome());
+        assertNotEquals(BattleResult.Outcome.WINFORB, result.getOutcome());
+    }
+
+    @Test
+    void testPoisonousWorksProperly() {
+        sampleBoard = Map.ofEntries(
+                entry(Position.A1, new Minion(MinionBase.DEADLY_SPORE)),
+                entry(Position.B1, new Minion("Big Minion", 10, 10, 6))
+        );
+        when(board.getMinions()).thenReturn(sampleBoard);
+        runner.initializeQueuesFromBoard(board);
+
+        BattleResult result = runner.battlePhase();
+        assertEquals(BattleResult.Outcome.DRAW, result.getOutcome());
     }
 }

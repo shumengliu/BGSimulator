@@ -104,6 +104,10 @@ public class Minion {
         this.currentHP = HP;
     }
 
+    public void setDead() {
+        alive = false;
+    }
+
     public void addKeyword(Keyword keyword) {
         keywords.add(keyword);
     }
@@ -111,4 +115,9 @@ public class Minion {
     public boolean isTaunt() {
         return keywords.contains(Keyword.TAUNT);
     }
+
+    public boolean isPoisonous() {
+        return keywords.contains(Keyword.POISONOUS);
+    }
+
 }

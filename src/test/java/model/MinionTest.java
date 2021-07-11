@@ -25,7 +25,7 @@ class MinionTest {
     }
 
     @Test
-    void testCreateMinionFromMinionBase() {
+    void createAlleycatFromMinionBaseShouldHaveCorrectStats() {
         Minion minion = new Minion(MinionBase.ALLEYCAT);
         assertEquals("Alleycat", minion.getName());
         assertEquals(1, minion.getAttack());

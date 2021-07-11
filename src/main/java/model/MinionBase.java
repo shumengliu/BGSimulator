@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.EnumSet;
 
 public enum MinionBase {
+    // Tier 1
     ALLEYCAT("Alleycat", 1, 1, 1),
     DECK_SWABBIE("Deck Swabbie", 2, 2, 1),
     DRAGONSPAWN_LIEUTENANT("Dragonspawn Lieutenant", 2, 2, 1,  Keyword.TAUNT), // taunt
@@ -17,6 +18,8 @@ public enum MinionBase {
     SUN_BACON_RELAXER("Sun-Bacon Relaxer", 1, 2, 1),
     VULGAR_HOMUNCULUS("Vulgar Homunculus", 2, 4, 1, Keyword.TAUNT), // taunt
     WRATH_WEAVER("Wrath Weaver", 1, 3, 1),
+
+    // Tier 2
     FREEDEALING_GAMBLER("Freedealing Gambler", 3, 3, 2),
     MENAGERIE_MUG("Menagrie Mug", 2, 2, 2),
     METALTOOTH_LEAPER("Metaltooth Leaper", 3, 3, 2),
@@ -27,6 +30,8 @@ public enum MinionBase {
     RABID_SAUROLISK("Rabid Saurolisk", 3, 2, 2),
     ROADBOAR("Roadboar", 1, 4, 2),
     STEWARD_OF_TIME("Steward of Time", 3, 3, 2),
+
+    // Tier 3
     ARCANE_ASSISTANT("Arcane Assistant", 3, 3, 3),
     BANNERBOAR("Bannerboar", 1, 4, 3),
     BLOODSAIL_CANNONEER("Bloodsail Cannoneer", 4, 3, 3),
@@ -46,6 +51,8 @@ public enum MinionBase {
     THORNCALLER("Thorncaller", 4, 3, 3),
     TWILIGHT_EMISSARY("Twilight Emissary", 4, 4, 3, Keyword.TAUNT), // taunt
     WARDEN_OF_OLD("Warden of Old", 3, 3, 3),
+
+    // Tier 4
     COBALT_SCALEBANE("Cobalt Scalebane", 5, 5, 4),
     DEFENDER_OF_ARGUS("Defender of Argus", 3, 3, 4),
     DYNAMIC_DUO("Dynamic Duo", 3, 4, 4, Keyword.TAUNT), // taunt
@@ -56,6 +63,8 @@ public enum MinionBase {
     PRIMALFIN_LOOKOUT("Primalfin Lookout", 3, 2, 4),
     TOXFIN("Toxfin", 1, 2, 4),
     VIRMEN_SENSEI("Virmen Sensei", 4, 5, 4),
+
+    // Tier 5
     AGAMAGGAN_THE_GREAT_BOAR("Agamaggan, the Great Boar", 6, 6, 5),
     AGGEM_THORNCURSE("Aggem Thorncurse", 3, 6, 5),
     ANNIHILAN_BATTLEMASTER("Annihilan Battlemaster", 3, 1, 5),
@@ -68,13 +77,17 @@ public enum MinionBase {
     NOMI_KITCHEN_NIGHTMARE("Nomi, Kitchen Nightmare", 4, 4, 5),
     RAZORGORE_THE_UNTAMED("Razorgore, the Untamed", 4, 6, 5),
     STRONGSHELL_SCAVENGER("Strongshell Scavenger", 2, 3, 5),
+    DEADLY_SPORE("Deadly Spore", 1, 1, 5, Keyword.POISONOUS),
     TAVERN_TEMPEST("Tavern Tempest", 4, 4, 5),
+
+    // Tier 6
     ARCHDRUID_HAMUUL("Archdruid Hamuul", 4, 4, 6),
     CAPTAIN_FLAT_TUSK("Captain Flat Tusk", 9, 6, 6),
     CHARLGA("Charlga", 4, 4, 6),
     KALECGOS_ARCANE_ASPECT("Kalecgos, Arcane Aspect", 4, 12, 6),
     LIUETENANT_GARR("Lieutenant Garr", 8, 8, 6, Keyword.TAUNT), // taunt
-    LIL_RAG("Lil' Rag", 6, 6, 6);
+    LIL_RAG("Lil' Rag", 6, 6, 6),
+    MAEXXNA("Maexxna", 2, 8, 6, Keyword.POISONOUS);
 
     private final String name;
     private final int attack;
