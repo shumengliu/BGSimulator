@@ -108,8 +108,16 @@ public class BattleRunner {
     private void evaluateAttack(Minion attacker, Minion defender) {
         assert attacker.isAlive();
         assert defender.isAlive();
-        attacker.loseHP(defender.getAttack());
-        defender.loseHP(attacker.getAttack());
+        if (attacker.isShielded()) {
+            attacker.losesShield();
+        } else {
+            attacker.loseHP(defender.getAttack());
+        }
+        if (defender.isShielded()) {
+            defender.losesShield();
+        } else {
+            defender.loseHP(attacker.getAttack());
+        }
         if (attacker.isPoisonous()) {
             defender.setDead();
         }

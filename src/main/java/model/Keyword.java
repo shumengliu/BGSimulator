@@ -1,5 +1,5 @@
 package model;
 
 public enum Keyword {
-    TAUNT, POISONOUS, SHIELD;
+    TAUNT, POISONOUS, DIVINE_SHIELD, WINDFURY, REBORN;
 }

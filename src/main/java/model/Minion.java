@@ -22,6 +22,8 @@ public class Minion {
 
     private final int tier;
 
+    private boolean isShielded;
+
     private EnumSet<Keyword> keywords;
 
     public Minion(String name, int attack, int health, int tier) {
@@ -31,6 +33,7 @@ public class Minion {
         this.tier = tier;
         alive = true;
         keywords = EnumSet.noneOf(Keyword.class);
+        checkDivineShield();
     }
 
     public Minion() {
@@ -47,6 +50,7 @@ public class Minion {
         this.tier = other.tier;
         this.keywords = EnumSet.copyOf(other.keywords);
         alive = true;
+        checkDivineShield();
     }
 
     public Minion(MinionBase base) {
@@ -56,6 +60,11 @@ public class Minion {
         this.tier = base.getTier();
         this.keywords = base.getKeywords();
         alive = true;
+        checkDivineShield();
+    }
+
+    private void checkDivineShield() {
+        isShielded = hasDivineShieldKeyword();
     }
 
     /**
@@ -120,4 +129,15 @@ public class Minion {
         return keywords.contains(Keyword.POISONOUS);
     }
 
+    public boolean hasDivineShieldKeyword() {
+        return keywords.contains(Keyword.DIVINE_SHIELD);
+    }
+
+    public boolean isShielded() {
+        return isShielded;
+    }
+
+    public void losesShield() {
+        isShielded = false;
+    }
 }

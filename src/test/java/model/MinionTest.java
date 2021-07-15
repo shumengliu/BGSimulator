@@ -46,6 +46,18 @@ class MinionTest {
     }
 
     @Test
+    void maexxnaShouldBePoisonous() {
+        Minion minion = new Minion(MinionBase.MAEXXNA);
+        assertTrue(minion.isPoisonous());
+    }
+
+    @Test
+    void bronzeWardenShouldHaveDivineShield() {
+        Minion minion = new Minion(MinionBase.BRONZE_WARDEN);
+        assertTrue(minion.hasDivineShieldKeyword());
+    }
+
+    @Test
     void minionIsAliveRightAfterConstruction() {
         Minion minion = new Minion("23Dragon", 2, 3, 1);
         assertTrue(minion.isAlive());

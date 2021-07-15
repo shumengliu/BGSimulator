@@ -29,10 +29,7 @@ public class BattleRunnerTest {
         sampleBoard = Map.ofEntries(
                 entry(Position.A1, new Minion())
         );
-        when(board.getMinions()).thenReturn(sampleBoard);
-        runner.initializeQueuesFromBoard(board);
-
-        BattleResult result = runner.battlePhase();
+        BattleResult result = getBattleResultFromBoard();
         assertEquals(BattleResult.Outcome.WINFORA, result.getOutcome());
     }
 
@@ -43,10 +40,7 @@ public class BattleRunnerTest {
                 entry(Position.A2, new Minion("11Murloc", 1, 1, 1)),
                 entry(Position.B1, new Minion("24Demon", 2, 4, 1))
         );
-        when(board.getMinions()).thenReturn(sampleBoard);
-        runner.initializeQueuesFromBoard(board);
-
-        BattleResult result = runner.battlePhase();
+        BattleResult result = getBattleResultFromBoard();
         assertNotEquals(BattleResult.Outcome.WINFORB, result.getOutcome());
     }
 
@@ -56,10 +50,36 @@ public class BattleRunnerTest {
                 entry(Position.A1, new Minion(MinionBase.DEADLY_SPORE)),
                 entry(Position.B1, new Minion("Big Minion", 10, 10, 6))
         );
+        BattleResult result = getBattleResultFromBoard();
+        assertEquals(BattleResult.Outcome.DRAW, result.getOutcome());
+    }
+
+    @Test
+    void moduleShouldWinOverVulgarHomunculus() {
+        sampleBoard = Map.ofEntries(
+                entry(Position.A1, new Minion(MinionBase.ANNOY_O_MODULE)),
+                entry(Position.B1, new Minion(MinionBase.VULGAR_HOMUNCULUS))
+        );
+        BattleResult result = getBattleResultFromBoard();
+        assertEquals(BattleResult.Outcome.WINFORA, result.getOutcome());
+    }
+
+    @Test
+    void moduleShouldDrawAgainstHangryDragon() {
+        sampleBoard = Map.ofEntries(
+                entry(Position.A1, new Minion(MinionBase.ANNOY_O_MODULE)),
+                entry(Position.B1, new Minion(MinionBase.HANGRY_DRAGON))
+        );
+        BattleResult result = getBattleResultFromBoard();
+        assertEquals(BattleResult.Outcome.DRAW, result.getOutcome());
+    }
+
+    private BattleResult getBattleResultFromBoard() {
         when(board.getMinions()).thenReturn(sampleBoard);
         runner.initializeQueuesFromBoard(board);
 
-        BattleResult result = runner.battlePhase();
-        assertEquals(BattleResult.Outcome.DRAW, result.getOutcome());
+        return runner.battlePhase();
     }
+
+
 }

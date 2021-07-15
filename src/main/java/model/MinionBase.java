@@ -51,6 +51,9 @@ public enum MinionBase {
     THORNCALLER("Thorncaller", 4, 3, 3),
     TWILIGHT_EMISSARY("Twilight Emissary", 4, 4, 3, Keyword.TAUNT), // taunt
     WARDEN_OF_OLD("Warden of Old", 3, 3, 3),
+    BRONZE_WARDEN("Bronze Warden", 2, 1, 3, Keyword.DIVINE_SHIELD, Keyword.REBORN),
+    CRACKLING_CYCLONE("Crackling Cyclone", 4, 1, 3, Keyword.DIVINE_SHIELD, Keyword.WINDFURY),
+    DEFLECT_O_BOT("Deflect-o-bot", 3, 2, 3, Keyword.DIVINE_SHIELD), // todo finish deflect bot
 
     // Tier 4
     COBALT_SCALEBANE("Cobalt Scalebane", 5, 5, 4),
@@ -63,6 +66,9 @@ public enum MinionBase {
     PRIMALFIN_LOOKOUT("Primalfin Lookout", 3, 2, 4),
     TOXFIN("Toxfin", 1, 2, 4),
     VIRMEN_SENSEI("Virmen Sensei", 4, 5, 4),
+    ANNOY_O_MODULE("Annoy-o-Module", 2, 4, 4, Keyword.DIVINE_SHIELD, Keyword.TAUNT),
+    BOLVAR_FIREBLOOD("Bolvar, Fireblood", 1, 7, 4, Keyword.DIVINE_SHIELD), // todo finish Bolvar
+
 
     // Tier 5
     AGAMAGGAN_THE_GREAT_BOAR("Agamaggan, the Great Boar", 6, 6, 5),
@@ -79,6 +85,7 @@ public enum MinionBase {
     STRONGSHELL_SCAVENGER("Strongshell Scavenger", 2, 3, 5),
     DEADLY_SPORE("Deadly Spore", 1, 1, 5, Keyword.POISONOUS),
     TAVERN_TEMPEST("Tavern Tempest", 4, 4, 5),
+    BRISTLEBACK_KNIGHT("Bristleback Knight", 4, 8, 5, Keyword.DIVINE_SHIELD, Keyword.WINDFURY), // todo finish this
 
     // Tier 6
     ARCHDRUID_HAMUUL("Archdruid Hamuul", 4, 4, 6),
