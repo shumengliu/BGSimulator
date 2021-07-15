@@ -93,7 +93,7 @@ public class BattleRunner {
         Minion attacker = getNextAttacker();
         Minion defender = getNextDefender();
 
-        evaluateAttack(attacker, defender);
+        AttackEvaluator.evaluate(attacker, defender);
         removeDeadMinions(attacker, defender);
     }
 
@@ -103,28 +103,6 @@ public class BattleRunner {
 
     private Minion getNextDefender() {
         return nextToAttack == Side.A ? queueB.getNextDefender() : queueA.getNextDefender();
-    }
-
-    private void evaluateAttack(Minion attacker, Minion defender) {
-        assert attacker.isAlive();
-        assert defender.isAlive();
-        if (attacker.isShielded()) {
-            attacker.losesShield();
-        } else {
-            attacker.loseHP(defender.getAttack());
-        }
-        if (defender.isShielded()) {
-            defender.losesShield();
-        } else {
-            defender.loseHP(attacker.getAttack());
-        }
-        if (attacker.isPoisonous()) {
-            defender.setDead();
-        }
-        if (defender.isPoisonous()) {
-            attacker.setDead();
-        }
-        System.out.println(attacker.getName() + " attacked " + defender.getName() + ".");
     }
 
     /**
