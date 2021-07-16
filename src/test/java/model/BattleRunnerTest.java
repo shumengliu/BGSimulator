@@ -65,10 +65,31 @@ public class BattleRunnerTest {
     }
 
     @Test
-    void moduleShouldDrawAgainstHangryDragon() {
+    void moduleShouldDrawAHangryDragon() {
         sampleBoard = Map.ofEntries(
                 entry(Position.A1, new Minion(MinionBase.ANNOY_O_MODULE)),
                 entry(Position.B1, new Minion(MinionBase.HANGRY_DRAGON))
+        );
+        BattleResult result = getBattleResultFromBoard();
+        assertEquals(BattleResult.Outcome.DRAW, result.getOutcome());
+    }
+
+    @Test
+    void sporeShouldLoseToModule() {
+        sampleBoard = Map.ofEntries(
+                entry(Position.A1, new Minion(MinionBase.DEADLY_SPORE)),
+                entry(Position.B1, new Minion(MinionBase.ANNOY_O_MODULE))
+        );
+        BattleResult result = getBattleResultFromBoard();
+        assertEquals(BattleResult.Outcome.WINFORB, result.getOutcome());
+    }
+
+    @Test
+    void twoSporesShouldDrawAgainstAModule() {
+        sampleBoard = Map.ofEntries(
+                entry(Position.A1, new Minion(MinionBase.DEADLY_SPORE)),
+                entry(Position.A2, new Minion(MinionBase.DEADLY_SPORE)),
+                entry(Position.B1, new Minion(MinionBase.ANNOY_O_MODULE))
         );
         BattleResult result = getBattleResultFromBoard();
         assertEquals(BattleResult.Outcome.DRAW, result.getOutcome());
