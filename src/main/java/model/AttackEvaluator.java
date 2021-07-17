@@ -10,14 +10,23 @@ public class AttackEvaluator {
         System.out.println(attacker.getName() + " attacked " + defender.getName() + ".");
     }
 
+    // minion1 takes damage
     private static void evaluateOneSide(Minion minion1, Minion minion2) {
+        // zero atk does nothing in an attack
+        if (hasZeroAtk(minion2)) {
+            return;
+        }
         if (minion1.isShielded()) {
             minion1.losesShield();
         } else {
             minion1.loseHP(minion2.getAttack());
+            if (minion2.isPoisonous()) {
+                minion1.setDead();
+            }
         }
-        if (minion1.isPoisonous()) {
-            minion2.setDead();
-        }
+    }
+
+    private static boolean hasZeroAtk(Minion minion) {
+        return minion.getAttack() <= 0;
     }
 }

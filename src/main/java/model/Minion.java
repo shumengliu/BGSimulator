@@ -24,7 +24,20 @@ public class Minion {
 
     private boolean isShielded;
 
-    private EnumSet<Keyword> keywords;
+    private final EnumSet<Keyword> keywords;
+
+    public Minion(int attack, int health) {
+        name = "Default Minion";
+        this.atk = attack;
+        this.currentHP = health;
+        tier = 1;
+        alive = true;
+        keywords = EnumSet.noneOf(Keyword.class);
+    }
+
+    public Minion() {
+        this(1, 1);
+    }
 
     public Minion(String name, int attack, int health, int tier) {
         this.name = name;
@@ -36,9 +49,6 @@ public class Minion {
         checkDivineShield();
     }
 
-    public Minion() {
-        this("Default Minion", 1, 1, 1);
-    }
 
     /**
      * Constructor for cloning a minion.
@@ -119,6 +129,9 @@ public class Minion {
 
     public void addKeyword(Keyword keyword) {
         keywords.add(keyword);
+        if (keyword == Keyword.DIVINE_SHIELD) {
+            isShielded = true;
+        }
     }
 
     public boolean isTaunt() {
