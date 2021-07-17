@@ -13,8 +13,10 @@ import org.testfx.api.FxAssert;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
+import org.testfx.matcher.control.LabeledMatchers;
 import org.testfx.matcher.control.TextInputControlMatchers;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -99,4 +101,11 @@ public class MainWindowTest {
         FxAssert.verifyThat("#minionPaneA1 #atkField", TextInputControlMatchers.hasText("0"));
     }
 
+    @Test
+    public void shouldDisplayResultAfterRunningMultiSim(FxRobot robot) {
+        robot.clickOn("#multiSimButton");
+        FxAssert.verifyThat("#resultPane #winRateA", LabeledMatchers.hasText("0.0%"));
+        FxAssert.verifyThat("#resultPane #drawRate", LabeledMatchers.hasText("100.0%"));
+        FxAssert.verifyThat("#resultPane #winRateB", LabeledMatchers.hasText("0.0%"));
+    }
 }
