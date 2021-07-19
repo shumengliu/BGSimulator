@@ -55,20 +55,19 @@
         </GridPane>
     </center>
     <right>
-        <VBox prefHeight="800.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+        <VBox prefHeight="800.0" prefWidth="160.0" BorderPane.alignment="CENTER" alignment="TOP_CENTER">
             <children>
-                <Button fx:id="oneSimButton" mnemonicParsing="false" onAction="#runSimulationOnce"
-                        prefHeight="23.0"
-                        prefWidth="162.0" text="Simulate"/>
-                <IntField fx:id="numberOfSimField" alignment="CENTER" prefHeight="25.0" prefWidth="162.0" text="1000"/>
+                <IntField fx:id="numberOfSimField" alignment="CENTER" prefHeight="25.0" prefWidth="200" maxWidth="200"
+                          text="1000"/>
                 <Button fx:id="multiSimButton" mnemonicParsing="false" onAction="#runMultiSimul" prefHeight="23.0"
-                        prefWidth="162.0"
-                        text="Run Simulation">
-                    <VBox.margin>
-                        <Insets top="10.0"/>
-                    </VBox.margin>
+                        prefWidth="200"
+                        text="开始模拟">
                 </Button>
+
                 <SimResultPane fx:id="simResultPane">
+                    <VBox.margin>
+                        <Insets top="100.0"/>
+                    </VBox.margin>
                 </SimResultPane>
             </children>
             <padding>

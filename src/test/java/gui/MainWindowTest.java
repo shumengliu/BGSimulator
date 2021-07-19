@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Position;
+import model.SimulationResult;
 import model.Simulator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,6 @@ import org.testfx.framework.junit5.Start;
 import org.testfx.matcher.control.LabeledMatchers;
 import org.testfx.matcher.control.TextInputControlMatchers;
 
-import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -43,20 +43,21 @@ public class MainWindowTest {
 
     }
 
-    @Test
-    public void clickingOnSimulateButtonRunsSimulationOnce(FxRobot robot) {
-        // inject mocked simulator
-        simulator = mock(Simulator.class);
-        controller.setSimulator(simulator);
-
-        robot.clickOn("#oneSimButton");
-        verify(simulator, times(1)).simulateOnce();
-    }
+//    @Test
+//    public void clickingOnSimulateButtonRunsSimulationOnce(FxRobot robot) {
+//        // inject mocked simulator
+//        simulator = mock(Simulator.class);
+//        controller.setSimulator(simulator);
+//
+//        robot.clickOn("#oneSimButton");
+//        verify(simulator, times(1)).simulateOnce();
+//    }
 
     @Test
     public void runSimulation1000TimesByClickingTheMultiSimulButton(FxRobot robot) {
         // inject mocked simulator
         simulator = mock(Simulator.class);
+        when(simulator.simulate(anyInt())).thenReturn(new SimulationResult());
         controller.setSimulator(simulator);
 
         robot.clickOn("#multiSimButton");
@@ -67,6 +68,7 @@ public class MainWindowTest {
     public void runSimulation500TimesByChangingTheSimulField(FxRobot robot) {
         // inject mocked simulator
         simulator = mock(Simulator.class);
+        when(simulator.simulate(anyInt())).thenReturn(new SimulationResult());
         controller.setSimulator(simulator);
 
         robot.doubleClickOn("#numberOfSimField");
@@ -104,8 +106,8 @@ public class MainWindowTest {
     @Test
     public void shouldDisplayResultAfterRunningMultiSim(FxRobot robot) {
         robot.clickOn("#multiSimButton");
-        FxAssert.verifyThat("#resultPane #winRateA", LabeledMatchers.hasText("0.0%"));
-        FxAssert.verifyThat("#resultPane #drawRate", LabeledMatchers.hasText("100.0%"));
-        FxAssert.verifyThat("#resultPane #winRateB", LabeledMatchers.hasText("0.0%"));
+        FxAssert.verifyThat("#simResultPane #winRateA", LabeledMatchers.hasText("0.0%"));
+        FxAssert.verifyThat("#simResultPane #drawRate", LabeledMatchers.hasText("100.0%"));
+        FxAssert.verifyThat("#simResultPane #winRateB", LabeledMatchers.hasText("0.0%"));
     }
 }

@@ -17,7 +17,7 @@ public class SimResultPane extends GridPane {
     Label winRateB;
 
     public SimResultPane() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sim-result-pane.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/SimResultPane.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

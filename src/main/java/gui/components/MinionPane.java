@@ -23,7 +23,7 @@ public class MinionPane extends BorderPane {
     private Button createMinionButton;
 
     public MinionPane() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/minion-pane.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/MinionPane.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
