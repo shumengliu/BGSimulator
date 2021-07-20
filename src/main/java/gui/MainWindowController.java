@@ -6,6 +6,7 @@ import gui.components.SimResultPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleGroup;
 import model.Board;
 import model.Position;
 import model.SimulationResult;
@@ -13,6 +14,9 @@ import model.Simulator;
 
 
 public class MainWindowController {
+    @FXML
+    public ToggleGroup Group1;
+
     private Simulator simulator;
 
     @FXML

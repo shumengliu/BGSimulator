@@ -106,8 +106,15 @@ public class MainWindowTest {
     @Test
     public void shouldDisplayResultAfterRunningMultiSim(FxRobot robot) {
         robot.clickOn("#multiSimButton");
-        FxAssert.verifyThat("#simResultPane #winRateA", LabeledMatchers.hasText("0.0%"));
-        FxAssert.verifyThat("#simResultPane #drawRate", LabeledMatchers.hasText("100.0%"));
-        FxAssert.verifyThat("#simResultPane #winRateB", LabeledMatchers.hasText("0.0%"));
+        FxAssert.verifyThat("#winRateA", LabeledMatchers.hasText("0.0%"));
+        FxAssert.verifyThat("#drawRate", LabeledMatchers.hasText("100.0%"));
+        FxAssert.verifyThat("#winRateB", LabeledMatchers.hasText("0.0%"));
+    }
+
+    @Test
+    public void selectingAndCreatingMinionBaseShouldWork(FxRobot robot) {
+        robot.clickOn("#minionChoice1");
+        robot.clickOn("#createButton");
+        assertEquals("Alleycat", controller.getSimulator().getBoard().getMinionByPosition(Position.A1).getName());
     }
 }
