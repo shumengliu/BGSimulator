@@ -29,7 +29,7 @@ public class MainWindowTest {
 
     @Start
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(MainApplication.class.getResource("/main-window.fxml"));
+        FXMLLoader loader = new FXMLLoader(MainApplication.class.getResource("/MainWindow.fxml"));
         Parent mainNode = loader.load();
         stage.setScene(new Scene(mainNode));
         stage.show();
