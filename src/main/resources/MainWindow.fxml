@@ -3,9 +3,9 @@
 <?import gui.components.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.control.ToggleGroup?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="gui.MainWindowController">
@@ -72,16 +72,17 @@
                     </VBox.margin>
                 </SimResultPane>
                 <BorderPane>
+                    <top>
+                        <HBox style="-fx-padding: 0 5 10 5;">
+                            <Button text="创建随从" id="createButton" onAction="#createMinion"/>
+                            <ComboBox fx:id="positionBox" promptText="随从位置" prefWidth="90.0" />
+                        </HBox>
+                    </top>
                     <center>
-                        <VBox>
-                            <ToggleButton text="Button 1">
-                                <toggleGroup>
-                                    <ToggleGroup fx:id="Group1"/>
-                                </toggleGroup>
-                            </ToggleButton>
-                            <ToggleButton text="Button 2" toggleGroup="$Group1"> </ToggleButton>
-                            <ToggleButton text="Button 3" toggleGroup="$Group1"> </ToggleButton>
-                        </VBox>
+                        <ScrollPane hbarPolicy="NEVER" fitToWidth="true">
+                            <VBox fx:id="minionBox" maxWidth="Infinity">
+                            </VBox>
+                        </ScrollPane>
                     </center>
                 </BorderPane>
             </children>

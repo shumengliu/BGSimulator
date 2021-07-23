@@ -2,77 +2,70 @@ package gui;
 
 import gui.components.IntField;
 import gui.components.MinionPane;
+import gui.components.MinionToggle;
 import gui.components.SimResultPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleGroup;
-import model.Board;
-import model.Position;
-import model.SimulationResult;
-import model.Simulator;
+import javafx.scene.layout.VBox;
+import model.*;
 
 
 public class MainWindowController {
-    @FXML
-    public ToggleGroup Group1;
-
     private Simulator simulator;
 
+    // minion selection
+    private ToggleGroup minionGroup;
     @FXML
-    public Button oneSimButton;
+    private ComboBox<Position> positionBox;
     @FXML
-    public Button multiSimButton;
+    private VBox minionBox;
+
+    // simulation related
     @FXML
-    public IntField numberOfSimField;
+    private Button multiSimButton;
     @FXML
-    public SimResultPane simResultPane;
+    private IntField numberOfSimField;
+    @FXML
+    private SimResultPane simResultPane;
 
     @FXML
-    public MinionPane minionPaneA1;
+    private MinionPane minionPaneA1;
     @FXML
-    public MinionPane minionPaneA2;
+    private MinionPane minionPaneA2;
     @FXML
-    public MinionPane minionPaneA3;
+    private MinionPane minionPaneA3;
     @FXML
-    public MinionPane minionPaneA4;
+    private MinionPane minionPaneA4;
     @FXML
-    public MinionPane minionPaneA5;
+    private MinionPane minionPaneA5;
     @FXML
-    public MinionPane minionPaneA6;
+    private MinionPane minionPaneA6;
     @FXML
-    public MinionPane minionPaneA7;
+    private MinionPane minionPaneA7;
     @FXML
-    public MinionPane minionPaneB1;
+    private MinionPane minionPaneB1;
     @FXML
-    public MinionPane minionPaneB2;
+    private MinionPane minionPaneB2;
     @FXML
-    public MinionPane minionPaneB3;
+    private MinionPane minionPaneB3;
     @FXML
-    public MinionPane minionPaneB4;
+    private MinionPane minionPaneB4;
     @FXML
-    public MinionPane minionPaneB5;
+    private MinionPane minionPaneB5;
     @FXML
-    public MinionPane minionPaneB6;
+    private MinionPane minionPaneB6;
     @FXML
-    public MinionPane minionPaneB7;
+    private MinionPane minionPaneB7;
 
     @FXML
     public void initialize() {
         simulator = new Simulator();
         initializeMinionPanes();
-    }
-
-    @FXML
-    public void runSimulationOnce(ActionEvent event) {
-        simulator.simulateOnce();
-    }
-
-    @FXML
-    public void runMultiSimul(ActionEvent event) {
-        int numberOfSim = Integer.parseInt(numberOfSimField.getText());
-        SimulationResult result = simulator.simulate(numberOfSim);
-        simResultPane.setResult(result);
+        initializePositionBox();
+        initializeMinionCreationButtons();
     }
 
     private void initializeMinionPanes() {
@@ -105,6 +98,52 @@ public class MainWindowController {
         minionPaneB5.setPosition(Position.B5);
         minionPaneB6.setPosition(Position.B6);
         minionPaneB7.setPosition(Position.B7);
+    }
+
+    private void initializePositionBox() {
+        for (Position position : Position.values()) {
+            positionBox.getItems().add(position);
+        }
+        positionBox.getSelectionModel().select(Position.A1);
+    }
+
+    private void initializeMinionCreationButtons() {
+        minionGroup = new ToggleGroup();
+        for (MinionBase minion : MinionBase.values()) {
+            MinionToggle button = new MinionToggle(minion.getName());
+            button.setMinionBase(minion);
+            button.setToggleGroup(minionGroup);
+            button.setMaxWidth(Integer.MAX_VALUE);
+            minionBox.getChildren().add(button);
+        }
+    }
+
+    @FXML
+    public void runSimulationOnce(ActionEvent event) {
+        simulator.simulateOnce();
+    }
+
+    @FXML
+    public void runMultiSimul(ActionEvent event) {
+        int numberOfSim = Integer.parseInt(numberOfSimField.getText());
+        SimulationResult result = simulator.simulate(numberOfSim);
+        simResultPane.setResult(result);
+    }
+
+    @FXML
+    public void createMinion(ActionEvent event) {
+        Minion minion = new Minion(getToggledMinionBase());
+        Position position = getSelectedPosition();
+        simulator.addMinionToBoard(minion, position);
+    }
+
+    private MinionBase getToggledMinionBase() {
+        MinionToggle selectedToggle = (MinionToggle) minionGroup.getSelectedToggle();
+        return selectedToggle.getMinionBase();
+    }
+
+    private Position getSelectedPosition() {
+        return positionBox.getSelectionModel().getSelectedItem();
     }
 
     // getters and setters for testing

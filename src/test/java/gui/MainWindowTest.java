@@ -1,6 +1,7 @@
 package gui;
 
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.VerticalDirection;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -43,7 +44,7 @@ public class MainWindowTest {
 
     }
 
-//    @Test
+    //    @Test
 //    public void clickingOnSimulateButtonRunsSimulationOnce(FxRobot robot) {
 //        // inject mocked simulator
 //        simulator = mock(Simulator.class);
@@ -52,29 +53,29 @@ public class MainWindowTest {
 //        robot.clickOn("#oneSimButton");
 //        verify(simulator, times(1)).simulateOnce();
 //    }
-
     @Test
-    public void runSimulation1000TimesByClickingTheMultiSimulButton(FxRobot robot) {
-        // inject mocked simulator
-        simulator = mock(Simulator.class);
-        when(simulator.simulate(anyInt())).thenReturn(new SimulationResult());
-        controller.setSimulator(simulator);
-
-        robot.clickOn("#multiSimButton");
-        verify(simulator, times(1)).simulate(1000);
+    public void selectingAndCreatingMinionBaseShouldWork(FxRobot robot) {
+        robot.clickOn("#ALLEYCATToggle");
+        robot.clickOn("#createButton");
+        assertEquals("Alleycat", controller.getSimulator().getBoard().getMinionByPosition(Position.A1).getName());
     }
 
     @Test
-    public void runSimulation500TimesByChangingTheSimulField(FxRobot robot) {
-        // inject mocked simulator
-        simulator = mock(Simulator.class);
-        when(simulator.simulate(anyInt())).thenReturn(new SimulationResult());
-        controller.setSimulator(simulator);
+    public void createMinionToACertainPositionShouldWork(FxRobot robot) {
+        robot.clickOn("#ALLEYCATToggle");
+        robot.clickOn("#positionBox");
+        robot.clickOn("B2");
+        robot.clickOn("#createButton");
+        assertEquals("Alleycat", controller.getSimulator().getBoard().getMinionByPosition(Position.B2).getName());
+    }
 
-        robot.doubleClickOn("#numberOfSimField");
-        robot.write("500");
-        robot.clickOn("#multiSimButton");
-        verify(simulator, times(1)).simulate(500);
+    @Test
+    public void createMinionShouldUpdateDisplay(FxRobot robot) {
+        robot.clickOn("#DRAGONSPAWN_LIEUTENANTToggle");
+        robot.clickOn("#createButton");
+        FxAssert.verifyThat("#minionPaneA1 #nameLabel", LabeledMatchers.hasText("Dragonspawn Lieutenant"));
+        FxAssert.verifyThat("#minionPaneA1 #atkField", TextInputControlMatchers.hasText("2"));
+        FxAssert.verifyThat("#minionPaneA1 #healthField", TextInputControlMatchers.hasText("3"));
     }
 
     @Test
@@ -104,17 +105,34 @@ public class MainWindowTest {
     }
 
     @Test
+    public void runSimulation1000TimesByClickingTheMultiSimulButton(FxRobot robot) {
+        // inject mocked simulator
+        simulator = mock(Simulator.class);
+        when(simulator.simulate(anyInt())).thenReturn(new SimulationResult());
+        controller.setSimulator(simulator);
+
+        robot.clickOn("#multiSimButton");
+        verify(simulator, times(1)).simulate(1000);
+    }
+
+    @Test
+    public void runSimulation500TimesByChangingTheSimulField(FxRobot robot) {
+        // inject mocked simulator
+        simulator = mock(Simulator.class);
+        when(simulator.simulate(anyInt())).thenReturn(new SimulationResult());
+        controller.setSimulator(simulator);
+
+        robot.doubleClickOn("#numberOfSimField");
+        robot.write("500");
+        robot.clickOn("#multiSimButton");
+        verify(simulator, times(1)).simulate(500);
+    }
+
+    @Test
     public void shouldDisplayResultAfterRunningMultiSim(FxRobot robot) {
         robot.clickOn("#multiSimButton");
         FxAssert.verifyThat("#winRateA", LabeledMatchers.hasText("0.0%"));
         FxAssert.verifyThat("#drawRate", LabeledMatchers.hasText("100.0%"));
         FxAssert.verifyThat("#winRateB", LabeledMatchers.hasText("0.0%"));
-    }
-
-    @Test
-    public void selectingAndCreatingMinionBaseShouldWork(FxRobot robot) {
-        robot.clickOn("#minionChoice1");
-        robot.clickOn("#createButton");
-        assertEquals("Alleycat", controller.getSimulator().getBoard().getMinionByPosition(Position.A1).getName());
     }
 }
