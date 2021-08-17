@@ -16,6 +16,7 @@ import model.*;
 public class MainWindowController {
     private Simulator simulator;
 
+    private Board board;
     // minion selection
     private ToggleGroup minionGroup;
     @FXML
@@ -63,13 +64,14 @@ public class MainWindowController {
     @FXML
     public void initialize() {
         simulator = new Simulator();
+        board = new Board();
+        simulator.setBoard(board);
         initializeMinionPanes();
         initializePositionBox();
         initializeMinionCreationButtons();
     }
 
     private void initializeMinionPanes() {
-        Board board = simulator.getBoard();
         minionPaneA1.setBoard(board);
         minionPaneA2.setBoard(board);
         minionPaneA3.setBoard(board);
@@ -132,9 +134,10 @@ public class MainWindowController {
 
     @FXML
     public void createMinion(ActionEvent event) {
-        Minion minion = new Minion(getToggledMinionBase());
+        MinionOnBoard minion = new MinionOnBoard(getToggledMinionBase());
         Position position = getSelectedPosition();
-        simulator.addMinionToBoard(minion, position);
+        board.setMinionInPosition(minion, position);
+        minionPaneA1.updateDisplay(new MinionInBattle());
     }
 
     private MinionBase getToggledMinionBase() {
@@ -154,5 +157,13 @@ public class MainWindowController {
 
     public Simulator getSimulator() {
         return simulator;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
     }
 }

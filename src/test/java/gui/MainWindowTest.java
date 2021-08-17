@@ -1,7 +1,6 @@
 package gui;
 
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.VerticalDirection;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -19,6 +18,7 @@ import org.testfx.matcher.control.LabeledMatchers;
 import org.testfx.matcher.control.TextInputControlMatchers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(ApplicationExtension.class)
@@ -57,16 +57,18 @@ public class MainWindowTest {
     public void selectingAndCreatingMinionBaseShouldWork(FxRobot robot) {
         robot.clickOn("#ALLEYCATToggle");
         robot.clickOn("#createButton");
-        assertEquals("Alleycat", controller.getSimulator().getBoard().getMinionByPosition(Position.A1).getName());
+        assertEquals("Alleycat", controller.getBoard().getMinionByPosition(Position.A1).getName());
     }
 
     @Test
     public void createMinionToACertainPositionShouldWork(FxRobot robot) {
+        // fixme after refactoring using properties and bindings
+        fail();
         robot.clickOn("#ALLEYCATToggle");
         robot.clickOn("#positionBox");
         robot.clickOn("B2");
         robot.clickOn("#createButton");
-        assertEquals("Alleycat", controller.getSimulator().getBoard().getMinionByPosition(Position.B2).getName());
+        assertEquals("Alleycat", controller.getBoard().getMinionByPosition(Position.B2).getName());
     }
 
     @Test
@@ -80,20 +82,20 @@ public class MainWindowTest {
 
     @Test
     public void modifyingAttackFieldChangesMinionAttack(FxRobot robot) {
-        robot.clickOn("#minionPaneA1 #createMinionButton");
+        createAllycatToA1(robot);
         robot.doubleClickOn("#minionPaneA1 #atkField");
         robot.write("42");
         FxAssert.verifyThat("#minionPaneA1 #atkField", TextInputControlMatchers.hasText("42"));
-        assertEquals(42, controller.getSimulator().getBoard().getMinionByPosition(Position.A1).getAttack());
+        assertEquals(42, controller.getBoard().getMinionByPosition(Position.A1).getAttack());
     }
 
     @Test
     public void modifyingHealthFieldChangesMinionHP(FxRobot robot) {
-        robot.clickOn("#minionPaneA1 #createMinionButton");
-        robot.doubleClickOn("#minionPaneA1 #");
+        createAllycatToA1(robot);
+        robot.doubleClickOn("#minionPaneA1 #healthField");
         robot.write("42");
         FxAssert.verifyThat("#minionPaneA1 #healthField", TextInputControlMatchers.hasText("42"));
-        assertEquals(42, controller.getSimulator().getBoard().getMinionByPosition(Position.A1).getHealth());
+        assertEquals(42, controller.getBoard().getMinionByPosition(Position.A1).getHp());
     }
 
     @Test
@@ -134,5 +136,10 @@ public class MainWindowTest {
         FxAssert.verifyThat("#winRateA", LabeledMatchers.hasText("0.0%"));
         FxAssert.verifyThat("#drawRate", LabeledMatchers.hasText("100.0%"));
         FxAssert.verifyThat("#winRateB", LabeledMatchers.hasText("0.0%"));
+    }
+
+    private void createAllycatToA1(FxRobot robot) {
+        robot.clickOn("#ALLEYCATToggle");
+        robot.clickOn("#createButton");
     }
 }

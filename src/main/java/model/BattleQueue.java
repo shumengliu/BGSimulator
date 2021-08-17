@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class BattleQueue {
     static private final Random random = new Random();
 
-    private final ArrayList<Minion> minions;
+    private final ArrayList<MinionInBattle> minions;
     // index of the next minion to attack
     private int front;
 
@@ -21,13 +21,12 @@ public class BattleQueue {
         return minions.size();
     }
 
-    public void addCloneOfMinion(Minion minion) {
-        Minion clone = new Minion(minion);
-        minions.add(clone);
+    public void addMinionFromBoardForm(MinionOnBoard minion) {
+        minions.add(MinionFactory.createBattleFormForMinionOnBoard(minion));
     }
 
     public boolean hasLivingMinion() {
-        return minions.stream().anyMatch(Minion::isAlive);
+        return minions.stream().anyMatch(MinionInBattle::isAlive);
     }
 
     /**
@@ -36,11 +35,11 @@ public class BattleQueue {
      *
      * @return the next minion to attack.
      */
-    public Minion getNextAttacker() {
+    public MinionInBattle getNextAttacker() {
         if (front >= minions.size()) {
             front = 0;
         }
-        Minion minion = minions.get(front);
+        MinionInBattle minion = minions.get(front);
         front++;
         return minion;
     }
@@ -50,9 +49,9 @@ public class BattleQueue {
      *
      * @return the next minion to be attacked
      */
-    public Minion getNextDefender() {
+    public MinionInBattle getNextDefender() {
         if (hasAnyTauntMinion()) {
-            List<Minion> tauntMinions = minions.stream().filter(Minion::isTaunt).collect(Collectors.toList());
+            List<MinionInBattle> tauntMinions = minions.stream().filter(MinionInBattle::isTaunt).collect(Collectors.toList());
             return getRandomMinionFromList(tauntMinions);
         } else {
             return getRandomMinionFromList(minions);
@@ -60,10 +59,10 @@ public class BattleQueue {
     }
 
     private boolean hasAnyTauntMinion() {
-        return minions.stream().anyMatch(Minion::isTaunt);
+        return minions.stream().anyMatch(MinionInBattle::isTaunt);
     }
 
-    private Minion getRandomMinionFromList(List<Minion> minions) {
+    private MinionInBattle getRandomMinionFromList(List<MinionInBattle> minions) {
         return minions.get(random.nextInt(minions.size()));
     }
 
@@ -72,14 +71,14 @@ public class BattleQueue {
      *
      * @param minion the minion to remove.
      */
-    public void removeIfDead(Minion minion) {
+    public void removeIfDead(MinionInBattle minion) {
         if (!minion.isAlive()) {
             minions.remove(minion);
         }
     }
 
     public int getTierSum() {
-        return minions.stream().map(Minion::getTier).mapToInt(Integer::intValue).sum();
+        return minions.stream().map(MinionInBattle::getTier).mapToInt(Integer::intValue).sum();
     }
 
     public void reset() {

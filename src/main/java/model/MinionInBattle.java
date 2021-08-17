@@ -1,7 +1,5 @@
 package model;
 
-import java.util.EnumSet;
-
 /**
  * This class represents a simple minion in Battlegrounds.
  * A minion has health and attack.
@@ -9,10 +7,8 @@ import java.util.EnumSet;
  *
  * @author HonestBook
  */
-public class Minion {
-    private int atk;
-
-    // private int maxHP;
+public class MinionInBattle {
+    private int attack;
 
     private int currentHP;
 
@@ -22,60 +18,39 @@ public class Minion {
 
     private final int tier;
 
-    private boolean isShielded;
+    private boolean isShielded = false;
 
-    private final EnumSet<Keyword> keywords;
+    private boolean isPoisonous = false;
 
-    public Minion(int attack, int health) {
+    private boolean isTaunt = false;
+
+    public MinionInBattle(int attack, int health) {
         name = "Default Minion";
-        this.atk = attack;
+        this.attack = attack;
         this.currentHP = health;
         tier = 1;
         alive = true;
-        keywords = EnumSet.noneOf(Keyword.class);
     }
 
-    public Minion() {
+    public MinionInBattle() {
         this(1, 1);
     }
 
-    public Minion(String name, int attack, int health, int tier) {
+    public MinionInBattle(String name, int attack, int health, int tier) {
         this.name = name;
-        atk = attack;
+        this.attack = attack;
         currentHP = health;
         this.tier = tier;
         alive = true;
-        keywords = EnumSet.noneOf(Keyword.class);
-        checkDivineShield();
     }
 
-
-    /**
-     * Constructor for cloning a minion.
-     */
-    public Minion(Minion other) {
-        this.name = other.name;
-        this.atk = other.atk;
-        this.currentHP = other.currentHP;
-        this.tier = other.tier;
-        this.keywords = EnumSet.copyOf(other.keywords);
-        alive = true;
-        checkDivineShield();
-    }
-
-    public Minion(MinionBase base) {
-        this.name = base.getName();
-        this.atk = base.getAttack();
-        this.currentHP = base.getHp();
-        this.tier = base.getTier();
-        this.keywords = base.getKeywords();
-        alive = true;
-        checkDivineShield();
-    }
-
-    private void checkDivineShield() {
-        isShielded = hasDivineShieldKeyword();
-    }
+//    public MinionInBattle(MinionBase base) {
+//        this.name = base.getName();
+//        this.attack = base.getAttack();
+//        this.currentHP = base.getHp();
+//        this.tier = base.getTier();
+//        alive = true;
+//    }
 
     /**
      * Reduces the minion's current HP.
@@ -104,7 +79,7 @@ public class Minion {
     }
 
     public int getAttack() {
-        return atk;
+        return attack;
     }
 
     public int getHealth() {
@@ -116,7 +91,7 @@ public class Minion {
     }
 
     public void setAttack(int atk) {
-        this.atk = atk;
+        this.attack = atk;
     }
 
     public void setHP(int HP) {
@@ -127,27 +102,28 @@ public class Minion {
         alive = false;
     }
 
-    public void addKeyword(Keyword keyword) {
-        keywords.add(keyword);
-        if (keyword == Keyword.DIVINE_SHIELD) {
-            isShielded = true;
-        }
-    }
-
     public boolean isTaunt() {
-        return keywords.contains(Keyword.TAUNT);
+        return isTaunt;
     }
 
     public boolean isPoisonous() {
-        return keywords.contains(Keyword.POISONOUS);
-    }
-
-    public boolean hasDivineShieldKeyword() {
-        return keywords.contains(Keyword.DIVINE_SHIELD);
+        return isPoisonous;
     }
 
     public boolean isShielded() {
         return isShielded;
+    }
+
+    public void setShielded(boolean shielded) {
+        isShielded = shielded;
+    }
+
+    public void setPoisonous(boolean poisonous) {
+        isPoisonous = poisonous;
+    }
+
+    public void setTaunt(boolean taunt) {
+        isTaunt = taunt;
     }
 
     public void losesShield() {

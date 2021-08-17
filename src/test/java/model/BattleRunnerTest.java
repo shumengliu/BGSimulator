@@ -16,7 +16,7 @@ public class BattleRunnerTest {
 
     private Board board;
 
-    private Map<Position, Minion> sampleBoard;
+    private Map<Position, MinionOnBoard> sampleBoard;
 
     @BeforeEach
     void setUp() {
@@ -27,7 +27,7 @@ public class BattleRunnerTest {
     @Test
     void simpleBattleWithOneMinionHasCorrectResult() {
         sampleBoard = Map.ofEntries(
-                entry(Position.A1, new Minion())
+                entry(Position.A1, new MinionOnBoard())
         );
         BattleResult result = getBattleResultFromBoard();
         assertEquals(BattleResult.Outcome.WINFORA, result.getOutcome());
@@ -36,9 +36,9 @@ public class BattleRunnerTest {
     @Test
     void test5050WinOrDrawBoard() {
         sampleBoard = Map.ofEntries(
-                entry(Position.A1, new Minion("23Murloc", 2, 3, 1)),
-                entry(Position.A2, new Minion("11Murloc", 1, 1, 1)),
-                entry(Position.B1, new Minion("24Demon", 2, 4, 1))
+                entry(Position.A1, new MinionOnBoard("23Murloc", 2, 3, 1)),
+                entry(Position.A2, new MinionOnBoard("11Murloc", 1, 1, 1)),
+                entry(Position.B1, new MinionOnBoard("24Demon", 2, 4, 1))
         );
         BattleResult result = getBattleResultFromBoard();
         assertNotEquals(BattleResult.Outcome.WINFORB, result.getOutcome());
@@ -47,8 +47,8 @@ public class BattleRunnerTest {
     @Test
     void testPoisonousWorksProperly() {
         sampleBoard = Map.ofEntries(
-                entry(Position.A1, new Minion(MinionBase.DEADLY_SPORE)),
-                entry(Position.B1, new Minion("Big Minion", 10, 10, 6))
+                entry(Position.A1, new MinionOnBoard(MinionBase.DEADLY_SPORE)),
+                entry(Position.B1, new MinionOnBoard("Big Minion", 10, 10, 6))
         );
         BattleResult result = getBattleResultFromBoard();
         assertEquals(BattleResult.Outcome.DRAW, result.getOutcome());
@@ -57,8 +57,8 @@ public class BattleRunnerTest {
     @Test
     void moduleShouldWinOverVulgarHomunculus() {
         sampleBoard = Map.ofEntries(
-                entry(Position.A1, new Minion(MinionBase.ANNOY_O_MODULE)),
-                entry(Position.B1, new Minion(MinionBase.VULGAR_HOMUNCULUS))
+                entry(Position.A1, new MinionOnBoard(MinionBase.ANNOY_O_MODULE)),
+                entry(Position.B1, new MinionOnBoard(MinionBase.VULGAR_HOMUNCULUS))
         );
         BattleResult result = getBattleResultFromBoard();
         assertEquals(BattleResult.Outcome.WINFORA, result.getOutcome());
@@ -67,8 +67,8 @@ public class BattleRunnerTest {
     @Test
     void moduleShouldDrawAHangryDragon() {
         sampleBoard = Map.ofEntries(
-                entry(Position.A1, new Minion(MinionBase.ANNOY_O_MODULE)),
-                entry(Position.B1, new Minion(MinionBase.HANGRY_DRAGON))
+                entry(Position.A1, new MinionOnBoard(MinionBase.ANNOY_O_MODULE)),
+                entry(Position.B1, new MinionOnBoard(MinionBase.HANGRY_DRAGON))
         );
         BattleResult result = getBattleResultFromBoard();
         assertEquals(BattleResult.Outcome.DRAW, result.getOutcome());
@@ -77,8 +77,8 @@ public class BattleRunnerTest {
     @Test
     void sporeShouldLoseToModule() {
         sampleBoard = Map.ofEntries(
-                entry(Position.A1, new Minion(MinionBase.DEADLY_SPORE)),
-                entry(Position.B1, new Minion(MinionBase.ANNOY_O_MODULE))
+                entry(Position.A1, new MinionOnBoard(MinionBase.DEADLY_SPORE)),
+                entry(Position.B1, new MinionOnBoard(MinionBase.ANNOY_O_MODULE))
         );
         BattleResult result = getBattleResultFromBoard();
         assertEquals(BattleResult.Outcome.WINFORB, result.getOutcome());
@@ -87,9 +87,9 @@ public class BattleRunnerTest {
     @Test
     void twoSporesShouldDrawAgainstAModule() {
         sampleBoard = Map.ofEntries(
-                entry(Position.A1, new Minion(MinionBase.DEADLY_SPORE)),
-                entry(Position.A2, new Minion(MinionBase.DEADLY_SPORE)),
-                entry(Position.B1, new Minion(MinionBase.ANNOY_O_MODULE))
+                entry(Position.A1, new MinionOnBoard(MinionBase.DEADLY_SPORE)),
+                entry(Position.A2, new MinionOnBoard(MinionBase.DEADLY_SPORE)),
+                entry(Position.B1, new MinionOnBoard(MinionBase.ANNOY_O_MODULE))
         );
         BattleResult result = getBattleResultFromBoard();
         assertEquals(BattleResult.Outcome.DRAW, result.getOutcome());

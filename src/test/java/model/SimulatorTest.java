@@ -14,7 +14,7 @@ import static org.mockito.Mockito.when;
 public class SimulatorTest {
     private Simulator simulator;
     private Board board;
-    private Map<Position, Minion> sampleBoard;
+    private Map<Position, MinionOnBoard> sampleBoard;
 
     @BeforeEach
     void setUp() {
@@ -36,7 +36,7 @@ public class SimulatorTest {
     @Test
     void simulate1000TimesAndGetTheResult() {
         sampleBoard = Map.ofEntries(
-                entry(Position.A1, new Minion())
+                entry(Position.A1, new MinionOnBoard())
         );
         when(board.getMinions()).thenReturn(sampleBoard);
 
@@ -49,9 +49,9 @@ public class SimulatorTest {
     @Test
     void simulate1000TimesForA50Win50DrawBoard() {
         sampleBoard = Map.ofEntries(
-                entry(Position.A1, new Minion("23Murloc", 2, 3, 1)),
-                entry(Position.A2, new Minion("11Murloc", 1, 1, 1)),
-                entry(Position.B1, new Minion("24Demon", 2, 4, 1))
+                entry(Position.A1, new MinionOnBoard("23Murloc", 2, 3, 1)),
+                entry(Position.A2, new MinionOnBoard("11Murloc", 1, 1, 1)),
+                entry(Position.B1, new MinionOnBoard("24Demon", 2, 4, 1))
         );
         when(board.getMinions()).thenReturn(sampleBoard);
 
@@ -63,13 +63,13 @@ public class SimulatorTest {
     @Test
     void simulate1000TimesForA33Win66LoseBoard() {
         sampleBoard = Map.ofEntries(
-                entry(Position.A1, new Minion("91Big", 9, 1, 1)),
-                entry(Position.A2, new Minion("22Medium", 2, 2, 1)),
-                entry(Position.A3, new Minion("22Medium", 2, 2, 1)),
-                entry(Position.A4, new Minion("22Medium", 2, 2, 1)),
-                entry(Position.B1, new Minion("99Big", 9, 9, 1)),
-                entry(Position.B2, new Minion("11Small", 1, 1, 1)),
-                entry(Position.B3, new Minion("11Small", 1, 1, 1))
+                entry(Position.A1, new MinionOnBoard("91Big", 9, 1, 1)),
+                entry(Position.A2, new MinionOnBoard("22Medium", 2, 2, 1)),
+                entry(Position.A3, new MinionOnBoard("22Medium", 2, 2, 1)),
+                entry(Position.A4, new MinionOnBoard("22Medium", 2, 2, 1)),
+                entry(Position.B1, new MinionOnBoard("99Big", 9, 9, 1)),
+                entry(Position.B2, new MinionOnBoard("11Small", 1, 1, 1)),
+                entry(Position.B3, new MinionOnBoard("11Small", 1, 1, 1))
         );
         when(board.getMinions()).thenReturn(sampleBoard);
 

@@ -2,21 +2,12 @@ package model;
 
 public class Simulator {
 
-    private Board board;
-
     private BattleRunner runner;
 
+    private Board board;
+
     public Simulator() {
-        board = new Board();
         runner = new BattleRunner();
-    }
-
-    public void addMinionToBoard(Minion minion, Position position) {
-        board.setMinionInPosition(minion, position);
-    }
-
-    public Board getBoard() {
-        return board;
     }
 
     public void simulateOnce() {
@@ -41,8 +32,6 @@ public class Simulator {
         System.out.println("PlayerB win rate: " + simResult.getWinRateForB() * 100 + "%");
         return simResult;
     }
-
-    // setters for testing
 
     public void setBoard(Board board) {
         this.board = board;

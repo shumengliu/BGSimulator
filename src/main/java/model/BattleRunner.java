@@ -21,16 +21,16 @@ public class BattleRunner {
     public void initializeQueuesFromBoard(Board board) {
         queueA.reset();
         queueB.reset();
-        Map<Position, Minion> minions = board.getMinions();
+        Map<Position, MinionOnBoard> minions = board.getMinions();
         initializeQueuesFromMinionsMap(minions);
     }
 
-    private void initializeQueuesFromMinionsMap(Map<Position, Minion> minions) {
+    private void initializeQueuesFromMinionsMap(Map<Position, MinionOnBoard> minions) {
         for (Position position : POSITIONS_LIST) {
-            Minion minion = minions.get(position);
-            if (minion != null) {
+            MinionOnBoard minionOnBoard = minions.get(position);
+            if (minionOnBoard != null) {
                 BattleQueue bq = getBattleQueueByPosition(position);
-                bq.addCloneOfMinion(minions.get(position));
+                bq.addMinionFromBoardForm(minions.get(position));
             }
         }
     }
@@ -90,25 +90,25 @@ public class BattleRunner {
     }
 
     private void executeNextAttack() {
-        Minion attacker = getNextAttacker();
-        Minion defender = getNextDefender();
+        MinionInBattle attacker = getNextAttacker();
+        MinionInBattle defender = getNextDefender();
 
         AttackEvaluator.evaluate(attacker, defender);
         removeDeadMinions(attacker, defender);
     }
 
-    private Minion getNextAttacker() {
+    private MinionInBattle getNextAttacker() {
         return nextToAttack == Side.A ? queueA.getNextAttacker() : queueB.getNextAttacker();
     }
 
-    private Minion getNextDefender() {
+    private MinionInBattle getNextDefender() {
         return nextToAttack == Side.A ? queueB.getNextDefender() : queueA.getNextDefender();
     }
 
     /**
      * Removes any dead minion as the consequence of an attack.
      */
-    private void removeDeadMinions(Minion attacker, Minion defender) {
+    private void removeDeadMinions(MinionInBattle attacker, MinionInBattle defender) {
         if (nextToAttack == Side.A) {
             queueA.removeIfDead(attacker);
             queueB.removeIfDead(defender);

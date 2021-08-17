@@ -17,4 +17,9 @@
     <center>
         <Label fx:id="nameLabel" alignment="CENTER" prefHeight="140.0" prefWidth="199.0" text="myMinion" BorderPane.alignment="CENTER"/>
     </center>
+    <top>
+        <Button fx:id="createMinionButton" onAction="#createMinion" mnemonicParsing="false"
+                text="Add/Modify Minion"
+                BorderPane.alignment="CENTER"/>
+    </top>
 </fx:root>

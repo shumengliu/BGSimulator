@@ -8,16 +8,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class BattleQueueTest {
     private BattleQueue queue;
 
-    private Minion minionSample1;
-    private Minion minionSample2;
-    private Minion minionSample3;
+    private MinionOnBoard minionSample1;
+    private MinionOnBoard minionSample2;
+    private MinionOnBoard minionSample3;
 
     @BeforeEach
     void setUp() {
         queue = new BattleQueue();
-        minionSample1 = new Minion(MinionBase.MICRO_MACHINE);
-        minionSample2 = new Minion(MinionBase.ALLEYCAT);
-        minionSample3 = new Minion(MinionBase.FREEDEALING_GAMBLER);
+        minionSample1 = new MinionOnBoard(MinionBase.MICRO_MACHINE);
+        minionSample2 = new MinionOnBoard(MinionBase.ALLEYCAT);
+        minionSample3 = new MinionOnBoard(MinionBase.FREEDEALING_GAMBLER);
     }
 
     @Test
@@ -27,13 +27,13 @@ class BattleQueueTest {
 
     @Test
     void addingMinionIncrementsSize() {
-        queue.addCloneOfMinion(minionSample1);
+        queue.addMinionFromBoardForm(minionSample1);
         assertEquals(1, queue.size());
     }
 
     @Test
     void addMinionCreatesAnotherInstance() {
-        queue.addCloneOfMinion(minionSample1);
+        queue.addMinionFromBoardForm(minionSample1);
         assertNotEquals(minionSample1, queue.getNextAttacker());
     }
 
@@ -44,94 +44,94 @@ class BattleQueueTest {
 
     @Test
     void afterAddingMinionThereIsLivingMinion() {
-        queue.addCloneOfMinion(minionSample1);
+        queue.addMinionFromBoardForm(minionSample1);
         assertTrue(queue.hasLivingMinion());
     }
 
     @Test
     void getNextAttackerShouldReturnFirstMinionWhenCalledOnce() {
-        queue.addCloneOfMinion(minionSample1);
-        queue.addCloneOfMinion(minionSample2);
-        queue.addCloneOfMinion(minionSample3);
-        Minion actual = queue.getNextAttacker();
+        queue.addMinionFromBoardForm(minionSample1);
+        queue.addMinionFromBoardForm(minionSample2);
+        queue.addMinionFromBoardForm(minionSample3);
+        MinionInBattle actual = queue.getNextAttacker();
         assertEquals(minionSample1.getName(), actual.getName());
     }
 
     @Test
     void getNextAttackerShouldReturnSecondMinionWhenCalledTwice() {
-        queue.addCloneOfMinion(minionSample1);
-        queue.addCloneOfMinion(minionSample2);
-        queue.addCloneOfMinion(minionSample3);
+        queue.addMinionFromBoardForm(minionSample1);
+        queue.addMinionFromBoardForm(minionSample2);
+        queue.addMinionFromBoardForm(minionSample3);
 
         queue.getNextAttacker();
-        Minion actual = queue.getNextAttacker();
+        MinionInBattle actual = queue.getNextAttacker();
         assertEquals(minionSample2.getName(), actual.getName());
     }
 
     @Test
     void getNextAttackerShouldWorkInACircularFashionWhenCalledMultipleTimes() {
-        queue.addCloneOfMinion(minionSample1);
-        queue.addCloneOfMinion(minionSample2);
-        queue.addCloneOfMinion(minionSample3);
+        queue.addMinionFromBoardForm(minionSample1);
+        queue.addMinionFromBoardForm(minionSample2);
+        queue.addMinionFromBoardForm(minionSample3);
 
         for (int i = 0; i < 10; i++) {
-            Minion minion1 = queue.getNextAttacker();
+            MinionInBattle minion1 = queue.getNextAttacker();
             assertEquals(minionSample1.getName(), minion1.getName());
-            Minion minion2 = queue.getNextAttacker();
+            MinionInBattle minion2 = queue.getNextAttacker();
             assertEquals(minionSample2.getName(), minion2.getName());
-            Minion minion3 = queue.getNextAttacker();
+            MinionInBattle minion3 = queue.getNextAttacker();
             assertEquals(minionSample3.getName(), minion3.getName());
         }
     }
 
     @Test
     void getNextDefenderShouldReturnTheMinionWhenThereIsOnlyOne() {
-        queue.addCloneOfMinion(minionSample1);
+        queue.addMinionFromBoardForm(minionSample1);
 
-        Minion actual = queue.getNextDefender();
+        MinionInBattle actual = queue.getNextDefender();
         assertEquals(minionSample1.getName(), actual.getName());
     }
 
     @Test
     void getNextDefenderShouldPrioritiseTauntMinions() {
         minionSample1.addKeyword(Keyword.TAUNT);
-        queue.addCloneOfMinion(minionSample1); // this is taunt
-        queue.addCloneOfMinion(minionSample2);
-        queue.addCloneOfMinion(minionSample3);
+        queue.addMinionFromBoardForm(minionSample1); // this is taunt
+        queue.addMinionFromBoardForm(minionSample2);
+        queue.addMinionFromBoardForm(minionSample3);
 
         for (int i = 0; i < 10; i++) {
-            Minion actual = queue.getNextDefender();
+            MinionInBattle actual = queue.getNextDefender();
             assertEquals(minionSample1.getName(), actual.getName());
         }
     }
 
     @Test
     void getNextDefenderShouldReturnOneOfTheTauntMinions() {
-        queue.addCloneOfMinion(minionSample1);
-        queue.addCloneOfMinion(minionSample2);
-        queue.addCloneOfMinion(minionSample3);
-        queue.addCloneOfMinion(new Minion(MinionBase.MOLTEN_ROCK)); // this is taunt
-        queue.addCloneOfMinion(new Minion(MinionBase.TWILIGHT_EMISSARY)); // this is taunt
-        queue.addCloneOfMinion(new Minion(MinionBase.ARCANE_ASSISTANT));
-        queue.addCloneOfMinion(new Minion(MinionBase.DECK_SWABBIE));
+        queue.addMinionFromBoardForm(minionSample1);
+        queue.addMinionFromBoardForm(minionSample2);
+        queue.addMinionFromBoardForm(minionSample3);
+        queue.addMinionFromBoardForm(new MinionOnBoard(MinionBase.MOLTEN_ROCK)); // this is taunt
+        queue.addMinionFromBoardForm(new MinionOnBoard(MinionBase.TWILIGHT_EMISSARY)); // this is taunt
+        queue.addMinionFromBoardForm(new MinionOnBoard(MinionBase.ARCANE_ASSISTANT));
+        queue.addMinionFromBoardForm(new MinionOnBoard(MinionBase.DECK_SWABBIE));
 
         for (int i = 0; i < 10; i++) {
-            Minion actual = queue.getNextDefender();
+            MinionInBattle actual = queue.getNextDefender();
             assertTrue(actual.isTaunt());
         }
     }
 
     @Test
     void getNextMinionShouldVisitEveryMinionIfCalled100Times() {
-        queue.addCloneOfMinion(minionSample1);
-        queue.addCloneOfMinion(minionSample2);
-        queue.addCloneOfMinion(minionSample3);
+        queue.addMinionFromBoardForm(minionSample1);
+        queue.addMinionFromBoardForm(minionSample2);
+        queue.addMinionFromBoardForm(minionSample3);
 
         boolean minion1visited = false;
         boolean minion2visited = false;
         boolean minion3visited = false;
         for (int i = 0; i < 100; i++) {
-            Minion minion = queue.getNextDefender();
+            MinionInBattle minion = queue.getNextDefender();
             if (minion.getName().equals(minionSample1.getName())) {
                 minion1visited = true;
             } else if (minion.getName().equals(minionSample2.getName())) {
@@ -148,11 +148,11 @@ class BattleQueueTest {
 
     @Test
     void removeIfDeadShouldRemoveDeadMinion() {
-        queue.addCloneOfMinion(minionSample1);
-        queue.addCloneOfMinion(minionSample2);
-        queue.addCloneOfMinion(minionSample3);
+        queue.addMinionFromBoardForm(minionSample1);
+        queue.addMinionFromBoardForm(minionSample2);
+        queue.addMinionFromBoardForm(minionSample3);
 
-        Minion minion = queue.getNextAttacker();
+        MinionInBattle minion = queue.getNextAttacker();
         minion.loseHP(10); // Minion Sample 1 has 3 health.
         queue.removeIfDead(minion);
 
@@ -161,11 +161,11 @@ class BattleQueueTest {
 
     @Test
     void removeIfDeadShouldNotRemoveLivingMinion() {
-        queue.addCloneOfMinion(minionSample1);
-        queue.addCloneOfMinion(minionSample2);
-        queue.addCloneOfMinion(minionSample3);
+        queue.addMinionFromBoardForm(minionSample1);
+        queue.addMinionFromBoardForm(minionSample2);
+        queue.addMinionFromBoardForm(minionSample3);
 
-        Minion minion = queue.getNextAttacker();
+        MinionInBattle minion = queue.getNextAttacker();
         minion.loseHP(1); // Minion Sample 1 has 3 health.
         queue.removeIfDead(minion);
 
@@ -175,9 +175,9 @@ class BattleQueueTest {
 
     @Test
     void getTierSumShouldReturnCorrectValue() {
-        queue.addCloneOfMinion(minionSample1);
-        queue.addCloneOfMinion(minionSample2);
-        queue.addCloneOfMinion(minionSample3);
+        queue.addMinionFromBoardForm(minionSample1);
+        queue.addMinionFromBoardForm(minionSample2);
+        queue.addMinionFromBoardForm(minionSample3);
 
         int actual = queue.getTierSum();
         assertEquals(4, actual);
@@ -185,9 +185,9 @@ class BattleQueueTest {
 
     @Test
     void clearAllMinionsShouldRemoveAllMinions() {
-        queue.addCloneOfMinion(minionSample1);
-        queue.addCloneOfMinion(minionSample2);
-        queue.addCloneOfMinion(minionSample3);
+        queue.addMinionFromBoardForm(minionSample1);
+        queue.addMinionFromBoardForm(minionSample2);
+        queue.addMinionFromBoardForm(minionSample3);
 
         queue.reset();
         assertEquals(0, queue.size());

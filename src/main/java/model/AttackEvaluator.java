@@ -1,7 +1,7 @@
 package model;
 
 public class AttackEvaluator {
-    public static void evaluate(Minion attacker, Minion defender) {
+    public static void evaluate(MinionInBattle attacker, MinionInBattle defender) {
         assert attacker.isAlive();
         assert defender.isAlive();
 
@@ -11,7 +11,7 @@ public class AttackEvaluator {
     }
 
     // minion1 takes damage
-    private static void evaluateOneSide(Minion minion1, Minion minion2) {
+    private static void evaluateOneSide(MinionInBattle minion1, MinionInBattle minion2) {
         // zero atk does nothing in an attack
         if (hasZeroAtk(minion2)) {
             return;
@@ -26,7 +26,7 @@ public class AttackEvaluator {
         }
     }
 
-    private static boolean hasZeroAtk(Minion minion) {
+    private static boolean hasZeroAtk(MinionInBattle minion) {
         return minion.getAttack() <= 0;
     }
 }
