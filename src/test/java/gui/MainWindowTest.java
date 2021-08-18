@@ -44,15 +44,6 @@ public class MainWindowTest {
 
     }
 
-    //    @Test
-//    public void clickingOnSimulateButtonRunsSimulationOnce(FxRobot robot) {
-//        // inject mocked simulator
-//        simulator = mock(Simulator.class);
-//        controller.setSimulator(simulator);
-//
-//        robot.clickOn("#oneSimButton");
-//        verify(simulator, times(1)).simulateOnce();
-//    }
     @Test
     public void selectingAndCreatingMinionBaseShouldWork(FxRobot robot) {
         robot.clickOn("#ALLEYCATToggle");

@@ -1,6 +1,5 @@
 package gui.components;
 
-import javafx.beans.binding.ObjectBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,20 +27,7 @@ public class MinionPane extends BorderPane {
     @FXML
     private Button createMinionButton;
 
-//    ObjectBinding<MinionOnBoard> minionBinding = new ObjectBinding<>() {
-//        {
-//            super.bind(view.itemsComboBox.valueProperty());
-//        }
-//        @Override
-//        protected Item computeValue() {
-//            Item item;
-//            if (view.itemsComboBox.getSelectionModel().getSelectedIndex() >= 0)
-//                item = view.itemsComboBox.getSelectionModel().selectedItemProperty().get();
-//            else item = new Item();
-//            view.quantitySlider.setValue(0);
-//            return item;
-//        }
-//    };
+    private MinionOnBoard minion;
 
     public MinionPane() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/MinionPane.fxml"));
@@ -76,22 +62,35 @@ public class MinionPane extends BorderPane {
         });
     }
 
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
     public void updateDisplay(MinionInBattle minion) {
+        // fixme
         nameLabel.setText("Dragonspawn Lieutenant");
         atkField.setText("2");
         healthField.setText("3");
     }
 
-    @FXML
-    public void createMinion(ActionEvent event) {
-        board.setMinionInPosition(new MinionOnBoard(), position);
+    public MinionOnBoard getMinion() {
+        return minion;
     }
 
-    public void setBoard(Board board) {
-        this.board = board;
+    @FXML
+    public void createMinion(ActionEvent event) {
+        board.setMinionToPosition(new MinionOnBoard(), position);
     }
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setMinion(MinionOnBoard newMinion) {
+        this.minion = newMinion;
     }
 }

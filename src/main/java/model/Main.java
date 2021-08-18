@@ -15,14 +15,14 @@ public class Main {
     }
 
     private static void loadBoard1() {
-        board.setMinionInPosition(new MinionOnBoard("A1", 3, 3, 2), Position.A1);
-        board.setMinionInPosition(new MinionOnBoard("A2", 2, 2, 2), Position.A2);
-        board.setMinionInPosition(new MinionOnBoard("A3", 1, 1, 1), Position.A3);
-        board.setMinionInPosition(new MinionOnBoard("B1", 2, 2, 2), Position.B1);
-        board.setMinionInPosition(new MinionOnBoard("B2", 2, 4, 2), Position.B2);
-        board.setMinionInPosition(new MinionOnBoard("B3", 3, 2, 1), Position.B3);
-        board.setMinionInPosition(new MinionOnBoard("B4", 2, 3, 1), Position.B4);
-        board.setMinionInPosition(new MinionOnBoard("B5", 2, 2, 2), Position.B5);
+        board.setMinionToPosition(new MinionOnBoard("A1", 3, 3, 2), Position.A1);
+        board.setMinionToPosition(new MinionOnBoard("A2", 2, 2, 2), Position.A2);
+        board.setMinionToPosition(new MinionOnBoard("A3", 1, 1, 1), Position.A3);
+        board.setMinionToPosition(new MinionOnBoard("B1", 2, 2, 2), Position.B1);
+        board.setMinionToPosition(new MinionOnBoard("B2", 2, 4, 2), Position.B2);
+        board.setMinionToPosition(new MinionOnBoard("B3", 3, 2, 1), Position.B3);
+        board.setMinionToPosition(new MinionOnBoard("B4", 2, 3, 1), Position.B4);
+        board.setMinionToPosition(new MinionOnBoard("B5", 2, 2, 2), Position.B5);
     }
 
 //    private static void loadBoard2() {

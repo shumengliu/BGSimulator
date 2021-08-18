@@ -1,5 +1,10 @@
 package model;
 
+import gui.MainWindowController;
+import javafx.collections.FXCollections;
+import javafx.collections.MapChangeListener;
+import javafx.collections.ObservableMap;
+
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -11,10 +16,20 @@ import java.util.Map;
  * @author HonestBook
  */
 public class Board {
-    private final Map<Position, MinionOnBoard> minions;
+    private final ObservableMap<Position, MinionOnBoard> minions;
 
     public Board() {
-        minions = new EnumMap<>(Position.class);
+        minions = FXCollections.observableMap(new EnumMap<>(Position.class));
+        addMinionChangeListener();
+    }
+
+    private void addMinionChangeListener() {
+        minions.addListener((MapChangeListener<Position, MinionOnBoard>) change -> {
+            System.out.println(change.getKey());
+            Position position = change.getKey();
+            System.out.println(change.getValueAdded().getName());
+            MainWindowController.minionPaneMap.get(position).setMinion(change.getValueAdded());
+        });
     }
 
     /**
@@ -48,7 +63,11 @@ public class Board {
         return minions;
     }
 
-    public void setMinionInPosition(MinionOnBoard minion, Position position) {
+    public ObservableMap<Position, MinionOnBoard> getObservableMinions() {
+        return minions;
+    }
+
+    public void setMinionToPosition(MinionOnBoard minion, Position position) {
         minions.put(position, minion);
     }
 }

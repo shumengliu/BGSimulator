@@ -18,7 +18,7 @@ class BoardTest {
     @Test
     void addOneMinionToA1() {
         MinionOnBoard minion = new MinionOnBoard("23Dragon", 2, 3, 1);
-        board.setMinionInPosition(minion, Position.A1);
+        board.setMinionToPosition(minion, Position.A1);
         Map<Position, MinionOnBoard> expectedMap = Map.of(Position.A1, minion);
         assertEquals(minion, board.getMinionByPosition(Position.A1));
         assertEquals(expectedMap, board.getMinions());
@@ -28,8 +28,8 @@ class BoardTest {
     void replaceMinionOnA1() {
         MinionOnBoard oldMinion = new MinionOnBoard("23Dragon", 2, 3, 1);
         MinionOnBoard newMinion = new MinionOnBoard("21Murloc", 2, 1, 1);
-        board.setMinionInPosition(oldMinion, Position.A1);
-        board.setMinionInPosition(newMinion, Position.A1);
+        board.setMinionToPosition(oldMinion, Position.A1);
+        board.setMinionToPosition(newMinion, Position.A1);
         Map<Position, MinionOnBoard> expectedMap = Map.of(Position.A1, newMinion);
         assertEquals(newMinion, board.getMinionByPosition(Position.A1));
         assertEquals(expectedMap, board.getMinions());
@@ -43,12 +43,12 @@ class BoardTest {
         MinionOnBoard minionB1 = new MinionOnBoard("21Murloc", 3, 1, 1);
         MinionOnBoard minionB2 = new MinionOnBoard("23Dragon", 3, 2, 1);
         MinionOnBoard minionB3 = new MinionOnBoard("21Murloc", 3, 3, 1);
-        board.setMinionInPosition(minionA1, Position.A1);
-        board.setMinionInPosition(minionA2, Position.A2);
-        board.setMinionInPosition(minionA3, Position.A3);
-        board.setMinionInPosition(minionB1, Position.B1);
-        board.setMinionInPosition(minionB2, Position.B2);
-        board.setMinionInPosition(minionB3, Position.B3);
+        board.setMinionToPosition(minionA1, Position.A1);
+        board.setMinionToPosition(minionA2, Position.A2);
+        board.setMinionToPosition(minionA3, Position.A3);
+        board.setMinionToPosition(minionB1, Position.B1);
+        board.setMinionToPosition(minionB2, Position.B2);
+        board.setMinionToPosition(minionB3, Position.B3);
         Map<Position, MinionOnBoard> expectedMap = Map.of(Position.A1, minionA1,
                 Position.A2, minionA2,
                 Position.A3, minionA3,
@@ -77,12 +77,12 @@ class BoardTest {
         MinionOnBoard minionB1 = new MinionOnBoard("21Murloc", 3, 1, 1);
         MinionOnBoard minionB2 = new MinionOnBoard("23Dragon", 3, 2, 1);
         MinionOnBoard minionB3 = new MinionOnBoard("21Murloc", 3, 3, 1);
-        board.setMinionInPosition(minionA1, Position.A1);
-        board.setMinionInPosition(minionA2, Position.A2);
-        board.setMinionInPosition(minionA3, Position.A3);
-        board.setMinionInPosition(minionB1, Position.B1);
-        board.setMinionInPosition(minionB2, Position.B2);
-        board.setMinionInPosition(minionB3, Position.B3);
+        board.setMinionToPosition(minionA1, Position.A1);
+        board.setMinionToPosition(minionA2, Position.A2);
+        board.setMinionToPosition(minionA3, Position.A3);
+        board.setMinionToPosition(minionB1, Position.B1);
+        board.setMinionToPosition(minionB2, Position.B2);
+        board.setMinionToPosition(minionB3, Position.B3);
         String expected = """
                 Starting Position
                 PlayerA: 2-1  2-2  2-3 \s
