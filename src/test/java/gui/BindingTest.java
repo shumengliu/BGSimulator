@@ -44,27 +44,13 @@ public class BindingTest {
     }
 
     @Test
-    public void addMinionToBoardUpdatesMinionBindingInMinionPane(FxRobot robot) {
-        MinionOnBoard minion = new MinionOnBoard(MinionBase.ALLEYCAT);
-        board.setMinionToPosition(minion, Position.A1);
-        assertEquals(minion, controller.minionPaneA1.getMinion());
-    }
-
-    @Test
-    public void addMinionToBoardUpdatesMinionDisplay(FxRobot robot) {
-        MinionOnBoard minion = new MinionOnBoard(MinionBase.DRAGONSPAWN_LIEUTENANT);
-        board.setMinionToPosition(minion, Position.A1);
-        FxAssert.verifyThat("#minionPaneA1 #atkField", TextInputControlMatchers.hasText("2"));
-        FxAssert.verifyThat("#minionPaneA1 #healthField", TextInputControlMatchers.hasText("3"));
-    }
-
-    @Test
     public void createMinionShouldUpdateDisplay(FxRobot robot) {
         robot.clickOn("#DRAGONSPAWN_LIEUTENANTToggle");
         robot.clickOn("#createButton");
         FxAssert.verifyThat("#minionPaneA1 #nameLabel", LabeledMatchers.hasText("Dragonspawn Lieutenant"));
         FxAssert.verifyThat("#minionPaneA1 #atkField", TextInputControlMatchers.hasText("2"));
         FxAssert.verifyThat("#minionPaneA1 #healthField", TextInputControlMatchers.hasText("3"));
+        assertEquals("Dragonspawn Lieutenant", controller.minionPaneA1.getMinion().getName());
     }
 
     @Test

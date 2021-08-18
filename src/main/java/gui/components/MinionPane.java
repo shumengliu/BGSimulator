@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.util.converter.NumberStringConverter;
 import model.Board;
 import model.MinionInBattle;
 import model.MinionOnBoard;
@@ -42,27 +43,6 @@ public class MinionPane extends BorderPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-
-//        addEventListeners();
-    }
-
-    private void addEventListeners() {
-        setModifyAttackListener();
-        setModifyHealthListener();
-    }
-
-    private void setModifyAttackListener() {
-        atkField.textProperty().addListener((observable, oldValue, newValue) -> {
-            int newAttack = Integer.parseInt(newValue);
-            board.getMinionByPosition(position).setAttack(newAttack);
-        });
-    }
-
-    private void setModifyHealthListener() {
-        healthField.textProperty().addListener((observable, oldValue, newValue) -> {
-            int newHP = Integer.parseInt(newValue);
-            board.getMinionByPosition(position).setHp(newHP);
-        });
     }
 
     public void setBoard(Board board) {
@@ -79,9 +59,9 @@ public class MinionPane extends BorderPane {
     }
 
     private void createBindings() {
-        nameLabel.textProperty().bind(minion.nameProperty());
-        atkField.textProperty().bind(Bindings.format("%d", minion.attackProperty()));
-        healthField.textProperty().bind(Bindings.format("%d", minion.hpProperty()));
+        Bindings.bindBidirectional(nameLabel.textProperty(), minion.nameProperty());
+        Bindings.bindBidirectional(atkField.textProperty(), minion.attackProperty(), new NumberStringConverter());
+        Bindings.bindBidirectional(healthField.textProperty(), minion.hpProperty(), new NumberStringConverter());
     }
 
     @FXML
