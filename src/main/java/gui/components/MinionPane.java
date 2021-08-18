@@ -27,9 +27,6 @@ public class MinionPane extends BorderPane {
     private IntField healthField;
     @FXML
     private Label nameLabel;
-    // remove this later
-    @FXML
-    private Button createMinionButton;
 
     private MinionOnBoard minion;
 

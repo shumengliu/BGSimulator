@@ -53,8 +53,6 @@ public class MainWindowTest {
 
     @Test
     public void createMinionToACertainPositionShouldWork(FxRobot robot) {
-        // fixme after refactoring using properties and bindings
-        fail();
         robot.clickOn("#ALLEYCATToggle");
         robot.clickOn("#positionBox");
         robot.clickOn("B2");
@@ -65,10 +63,10 @@ public class MainWindowTest {
 
     @Test
     public void enteringNonNumericCharactersToAttackFieldShouldFail(FxRobot robot) {
-        robot.clickOn("#minionPaneA1 #createMinionButton");
+        createAllycatToA1(robot);
         robot.doubleClickOn("#minionPaneA1 #atkField");
         robot.write("abc");
-        FxAssert.verifyThat("#minionPaneA1 #atkField", TextInputControlMatchers.hasText("0"));
+        FxAssert.verifyThat("#minionPaneA1 #atkField", TextInputControlMatchers.hasText("1"));
     }
 
     @Test

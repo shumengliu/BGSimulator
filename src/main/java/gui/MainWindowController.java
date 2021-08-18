@@ -98,41 +98,6 @@ public class MainWindowController {
         for (MinionPane pane : minionPaneMap.values()) {
             pane.setBoard(board);
         }
-//        board.getObservableMinions().addListener((MapChangeListener<Position, MinionOnBoard>) change -> {
-//            System.out.println(change.getKey());
-//            Position position = change.getKey();
-//            System.out.println(change.getValueAdded().getName());
-////            minionPaneMap.get(position).setMinion(change.getValueAdded());
-//        });
-//        minionPaneA1.setPosition(Position.A1);
-//        minionPaneA2.setPosition(Position.A2);
-//        minionPaneA3.setPosition(Position.A3);
-//        minionPaneA4.setPosition(Position.A4);
-//        minionPaneA5.setPosition(Position.A5);
-//        minionPaneA6.setPosition(Position.A6);
-//        minionPaneA7.setPosition(Position.A7);
-//        minionPaneB1.setPosition(Position.B1);
-//        minionPaneB2.setPosition(Position.B2);
-//        minionPaneB3.setPosition(Position.B3);
-//        minionPaneB4.setPosition(Position.B4);
-//        minionPaneB5.setPosition(Position.B5);
-//        minionPaneB6.setPosition(Position.B6);
-//        minionPaneB7.setPosition(Position.B7);
-//        minionPaneA1.setBoard(board);
-//        minionPaneA2.setBoard(board);
-//        minionPaneA3.setBoard(board);
-//        minionPaneA4.setBoard(board);
-//        minionPaneA5.setBoard(board);
-//        minionPaneA6.setBoard(board);
-//        minionPaneA7.setBoard(board);
-//        minionPaneB1.setBoard(board);
-//        minionPaneB2.setBoard(board);
-//        minionPaneB3.setBoard(board);
-//        minionPaneB4.setBoard(board);
-//        minionPaneB5.setBoard(board);
-//        minionPaneB6.setBoard(board);
-//        minionPaneB7.setBoard(board);
-
     }
 
     private void initializePositionBox() {
@@ -170,7 +135,6 @@ public class MainWindowController {
         MinionOnBoard minion = new MinionOnBoard(getToggledMinionBase());
         Position position = getSelectedPosition();
         board.setMinionToPosition(minion, position);
-//        minionPaneA1.updateDisplay(new MinionInBattle());
     }
 
     private MinionBase getToggledMinionBase() {

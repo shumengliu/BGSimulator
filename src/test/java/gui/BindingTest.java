@@ -54,6 +54,17 @@ public class BindingTest {
     }
 
     @Test
+    public void createMinionToB2ShouldUpdateDisplay(FxRobot robot) {
+        robot.clickOn("#DRAGONSPAWN_LIEUTENANTToggle");
+        robot.clickOn("#positionBox");
+        robot.clickOn("B2");
+        robot.clickOn("#createButton");
+        FxAssert.verifyThat("#minionPaneB2 #nameLabel", LabeledMatchers.hasText("Dragonspawn Lieutenant"));
+        FxAssert.verifyThat("#minionPaneB2 #atkField", TextInputControlMatchers.hasText("2"));
+        FxAssert.verifyThat("#minionPaneB2 #healthField", TextInputControlMatchers.hasText("3"));
+    }
+
+    @Test
     public void modifyingAttackFieldChangesMinionAttack(FxRobot robot) {
         createAllycatToA1(robot);
         robot.doubleClickOn("#minionPaneA1 #atkField");
