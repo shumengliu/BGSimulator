@@ -74,5 +74,21 @@ public class MinionOnBoard {
     public void setName(String name) {
         this.name.set(name);
     }
+
+    public StringProperty nameProperty() {
+        return name;
+    }
+
+    public IntegerProperty attackProperty() {
+        return attack;
+    }
+
+    public IntegerProperty hpProperty() {
+        return hp;
+    }
+
+    public IntegerProperty tierProperty() {
+        return tier;
+    }
 }
 

@@ -1,5 +1,8 @@
 package gui.components;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,7 +43,7 @@ public class MinionPane extends BorderPane {
             throw new RuntimeException(exception);
         }
 
-        addEventListeners();
+//        addEventListeners();
     }
 
     private void addEventListeners() {
@@ -66,15 +69,19 @@ public class MinionPane extends BorderPane {
         this.board = board;
     }
 
-    public void updateDisplay(MinionInBattle minion) {
-        // fixme
-        nameLabel.setText("Dragonspawn Lieutenant");
-        atkField.setText("2");
-        healthField.setText("3");
-    }
-
     public MinionOnBoard getMinion() {
         return minion;
+    }
+
+    public void setMinion(MinionOnBoard newMinion) {
+        minion = newMinion;
+        createBindings();
+    }
+
+    private void createBindings() {
+        nameLabel.textProperty().bind(minion.nameProperty());
+        atkField.textProperty().bind(Bindings.format("%d", minion.attackProperty()));
+        healthField.textProperty().bind(Bindings.format("%d", minion.hpProperty()));
     }
 
     @FXML
@@ -88,9 +95,5 @@ public class MinionPane extends BorderPane {
 
     public Board getBoard() {
         return board;
-    }
-
-    public void setMinion(MinionOnBoard newMinion) {
-        this.minion = newMinion;
     }
 }

@@ -170,7 +170,7 @@ public class MainWindowController {
         MinionOnBoard minion = new MinionOnBoard(getToggledMinionBase());
         Position position = getSelectedPosition();
         board.setMinionToPosition(minion, position);
-        minionPaneA1.updateDisplay(new MinionInBattle());
+//        minionPaneA1.updateDisplay(new MinionInBattle());
     }
 
     private MinionBase getToggledMinionBase() {

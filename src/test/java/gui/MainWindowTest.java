@@ -62,32 +62,6 @@ public class MainWindowTest {
         assertEquals("Alleycat", controller.getBoard().getMinionByPosition(Position.B2).getName());
     }
 
-    @Test
-    public void createMinionShouldUpdateDisplay(FxRobot robot) {
-        robot.clickOn("#DRAGONSPAWN_LIEUTENANTToggle");
-        robot.clickOn("#createButton");
-        FxAssert.verifyThat("#minionPaneA1 #nameLabel", LabeledMatchers.hasText("Dragonspawn Lieutenant"));
-        FxAssert.verifyThat("#minionPaneA1 #atkField", TextInputControlMatchers.hasText("2"));
-        FxAssert.verifyThat("#minionPaneA1 #healthField", TextInputControlMatchers.hasText("3"));
-    }
-
-    @Test
-    public void modifyingAttackFieldChangesMinionAttack(FxRobot robot) {
-        createAllycatToA1(robot);
-        robot.doubleClickOn("#minionPaneA1 #atkField");
-        robot.write("42");
-        FxAssert.verifyThat("#minionPaneA1 #atkField", TextInputControlMatchers.hasText("42"));
-        assertEquals(42, controller.getBoard().getMinionByPosition(Position.A1).getAttack());
-    }
-
-    @Test
-    public void modifyingHealthFieldChangesMinionHP(FxRobot robot) {
-        createAllycatToA1(robot);
-        robot.doubleClickOn("#minionPaneA1 #healthField");
-        robot.write("42");
-        FxAssert.verifyThat("#minionPaneA1 #healthField", TextInputControlMatchers.hasText("42"));
-        assertEquals(42, controller.getBoard().getMinionByPosition(Position.A1).getHp());
-    }
 
     @Test
     public void enteringNonNumericCharactersToAttackFieldShouldFail(FxRobot robot) {

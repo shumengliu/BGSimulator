@@ -7,7 +7,7 @@ public enum MinionBase {
     // Tier 1
     ALLEYCAT("Alleycat", 1, 1, 1),
     DECK_SWABBIE("Deck Swabbie", 2, 2, 1),
-    DRAGONSPAWN_LIEUTENANT("Dragonspawn Lieutenant", 2, 2, 1,  Keyword.TAUNT), // taunt
+    DRAGONSPAWN_LIEUTENANT("Dragonspawn Lieutenant", 2, 3, 1,  Keyword.TAUNT), // taunt
     MICRO_MACHINE("Micro Machine", 1, 2, 1),
     MURLOC_TIDECALLER("Murloc Tidecaller", 1, 2, 1),
     MURLOC_TIDEHUNTER("MUrloc Tidehunter", 2, 1, 1),
