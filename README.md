@@ -1,5 +1,12 @@
 # BGSimulator
 
-# Add the following line to VM options
---module-path "E:\Program Files\javafx\javafx-sdk-11.0.2\lib" --add-modules javafx.controls,javafx.fxml 
+A simulator for Hearthstone Battlegrounds written in Java with a JavaFX GUI.
+
+- Customise the board for both sides to explore the unlimited possibilities of Hearthstone Battlegrounds.
+- Simulate the fight for thousands of times to see the winrates.
+- Support moving minion positions using GUI.
+- Currently only support minions without special abilities.
+
+## If JavaFX is not working for you, consider adding the following run configuration
+--module-path "%PATH_TO_JAVAFX%\lib" --add-modules javafx.controls,javafx.fxml 
  
