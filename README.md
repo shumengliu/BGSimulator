@@ -7,6 +7,7 @@ A simulator for Hearthstone Battlegrounds written in Java with a JavaFX GUI.
 - Support moving minion positions using GUI.
 - Currently only support minions without special abilities.
 
-## If JavaFX is not working for you, consider adding the following run configuration
---module-path "%PATH_TO_JAVAFX%\lib" --add-modules javafx.controls,javafx.fxml 
+## If JavaFX is not working for you
+Consider adding the following run configuration in Intellij IDEA
+`--module-path "%PATH_TO_JAVAFX%\lib" --add-modules javafx.controls,javafx.fxml`
  
